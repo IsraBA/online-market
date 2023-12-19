@@ -1,0 +1,163 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -20;
+}
+
+.cartHeader {
+    width: calc(100% - 30px);
+    height: 58px;
+    font-size: 35px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--primary-color);
+    padding-bottom: 28px;
+    padding-top: 40px;
+    position: sticky;
+    top: 0;
+    background-color: var(--primary-transparent-color);
+    z-index: 10;
+}
+
+.removeAll {
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid rgb(33, 33, 33);
+    position: relative;
+    padding: 2px 0 2px 8px;
+}
+
+.removeAll::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-color);
+    mix-blend-mode: screen;
+}
+
+.removeAll:hover {
+    cursor: pointer;
+}
+
+.removeAllImg {
+    display: block;
+    width: 35px;
+    height: auto;
+}
+
+.cartIcon {
+    color: var(--primary-color);
+    margin-right: 7px;
+}
+
+.cartItems {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.cartItem {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid rgb(36, 36, 36);
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartImage {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.fruitImgCart {
+    /* width: 55px; */
+    height: 110%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: -10;
+    opacity: 0.35;
+    /* bottom: 0; */
+    /* border: 1px solid black; */
+}
+
+.countButtonsTotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* background-color: #0000004e; */
+    border-left: 1px solid var(--primary-color);
+    padding-left: 5px;
+    color: var(--primary-color);
+}
+
+.countAndButtonsCart {
+    text-shadow: 1px 1px 4px #0000004f;
+    margin-bottom: -7px;
+}
+
+.amountButtonCart {
+    background-color: transparent;
+    border: none;
+    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.554));
+}
+
+.amountButtonCart:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.countCart {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.itemTotal {
+    color: black;
+    font-weight: 300;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px #00000065;
+}
+
+.payArea {
+    width: 100%;
+    padding-bottom: 8px;
+    padding-top: 20px;
+    position: sticky;
+    bottom: 0;
+    text-align: center;
+    background: linear-gradient(to top, var(--primary-transparent-color) 70%, rgba(255, 255, 255, 0));
+}
+
+.pay {
+    width: 85%;
+    height: 35px;
+    background-color: rgb(212, 0, 0);
+    color: white;
+    border-radius: 500px;
+    border: 0;
+
+}
+
+.pay:hover {
+    filter: brightness(1.1);
+    transition: 0.2s;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+.layout {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.cartLayout {
+    width: 380px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-right: 4px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-transparent-color);
+}
+
+.contentLayout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

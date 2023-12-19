@@ -1,0 +1,23 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filterBT{
+    width: 80px;
+    height: 38px;
+    border: 1.5px solid var(--primary-color);
+    background-color: var(--primary-transparent-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filterBT:hover{
+    filter: brightness(0.7);
+    transition: 0.1s;
+}
+
+.filterBT:active{
+    border: 2px solid black;
+}

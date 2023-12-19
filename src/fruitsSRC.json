@@ -1,0 +1,154 @@
+[
+    {
+        "id": "a1",
+        "name": "Apple",
+        "color": "Red",
+        "emoji": "🍎",
+        "price": 1.99,
+        "image": "https://i.pinimg.com/originals/c4/d9/ee/c4d9eefa0d4136938ed03c7359286f7a.png"
+    },
+    {
+        "id": "a2",
+        "name": "Banana",
+        "color": "Yellow",
+        "emoji": "🍌",
+        "price": 0.99,
+        "image": "https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Fruit-PNG/Large_Bananas_PNG_Clipart.png?m=1434276917"
+    },
+    {
+        "id": "a3",
+        "name": "Orange",
+        "color": "Orange",
+        "emoji": "🍊",
+        "price": 2.49,
+        "image": "https://purepng.com/public/uploads/large/purepng.com-orange-orangeorangefruitbitter-orangeorangesclip-art-17015273374288pjtg.png"
+    },
+    {
+        "id": "a4",
+        "name": "Grapes",
+        "color": "Purple",
+        "emoji": "🍇",
+        "price": 3.99,
+        "image": "https://www.freepnglogos.com/uploads/grapes-png/mzr-red-grapes-36.png"
+    },
+    {
+        "id": "a5",
+        "name": "Strawberry",
+        "color": "Red",
+        "emoji": "🍓",
+        "price": 2.79,
+        "image": "https://i.pinimg.com/originals/eb/d4/de/ebd4deb64c74e2f1246626d5a290274d.png"
+    },
+    {
+        "id": "a7",
+        "name": "Watermelon",
+        "color": "Green",
+        "emoji": "🍉",
+        "price": 5.99,
+        "image": "https://pngfre.com/wp-content/uploads/watermelon-27-1024x987.png"
+    },
+    {
+        "id": "a8",
+        "name": "Pineapple",
+        "color": "Yellow",
+        "emoji": "🍍",
+        "price": 3.89,
+        "image": "https://www.vhv.rs/dpng/f/39-392139_fruit-pineapple-hd-png-download.png"
+    },
+    {
+        "id": "a9",
+        "name": "Mango",
+        "color": "Orange",
+        "emoji": "🥭",
+        "price": 2.99,
+        "image": "https://static.vecteezy.com/system/resources/previews/029/200/082/non_2x/mango-transparent-background-free-png.png"
+    },
+    {
+        "id": "a10",
+        "name": "Kiwi",
+        "color": "Brown",
+        "emoji": "🥝",
+        "price": 1.79,
+        "image": "https://static.vecteezy.com/system/resources/previews/008/530/509/original/kiwi-fruit-cutout-file-png.png"
+    },
+    {
+        "id": "a11",
+        "name": "Peach",
+        "color": "Orange",
+        "emoji": "🍑",
+        "price": 2.29,
+        "image": "https://pngfre.com/wp-content/uploads/peach-png-image-from-pngfre-33-1024x815.png"
+    },
+    {
+        "id": "a12",
+        "name": "Cherry",
+        "color": "Red",
+        "emoji": "🍒",
+        "price": 4.99,
+        "image": "https://parspng.com/wp-content/uploads/2023/01/cherrypng.parspng.com-5.png"
+    },
+    {
+        "id": "a13",
+        "name": "Pear",
+        "color": "Green",
+        "emoji": "🍐",
+        "price": 1.89,
+        "image": "https://static.vecteezy.com/system/resources/previews/029/335/116/original/pear-transparent-background-png.png"
+    },
+    {
+        "id": "a14",
+        "name": "Plum",
+        "color": "Purple",
+        "emoji": "🍑",
+        "price": 2.69,
+        "image": "https://pngimg.com/d/plum_PNG8673.png"
+    },
+    {
+        "id": "a15",
+        "name": "Raspberry",
+        "color": "Red",
+        "emoji": "🍇",
+        "price": 3.49,
+        "image": "https://static.vecteezy.com/system/resources/previews/022/825/587/non_2x/raspberry-fruit-raspberries-on-transparent-background-png.png"
+    },
+    {
+        "id": "a16",
+        "name": "Lemon",
+        "color": "Yellow",
+        "emoji": "🍋",
+        "price": 1.49,
+        "image": "https://pngimg.com/d/lemon_PNG25198.png"
+    },
+    {
+        "id": "a17",
+        "name": "Cranberry",
+        "color": "Red",
+        "emoji": "🍒",
+        "price": 3.79,
+        "image": "https://static.vecteezy.com/system/resources/previews/027/144/570/original/fresh-cranberry-isolated-on-transparent-background-png.png"
+    },
+    {
+        "id": "a18",
+        "name": "Apricot",
+        "color": "Orange",
+        "emoji": "🍑",
+        "price": 2.19,
+        "image": "https://static.vecteezy.com/system/resources/previews/015/100/094/non_2x/apricots-transparent-background-free-png.png"
+    },
+    {
+        "id": "a19",
+        "name": "Avocado",
+        "color": "Green",
+        "emoji": "🥑",
+        "price": 4.99,
+        "image": "https://png.pngtree.com/png-clipart/20230114/ourmid/pngtree-photo-of-avocado-png-image_6561465.png"
+    },
+    {
+        "id": "a20",
+        "name": "Coconut",
+        "color": "Brown",
+        "emoji": "🥥",
+        "price": 5.49,
+        "image": "https://pngimg.com/d/coconut_PNG108885.png"
+    }
+]

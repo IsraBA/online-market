@@ -1,0 +1,70 @@
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.fruitImg {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price{
+    margin: 3px 0;
+}
+
+.addToCart {
+    width: 127px;
+    background-color: rgba(224, 0, 0, 0.042);
+    border-radius: 500px;
+    border: 1.5px solid rgb(224, 0, 0);
+    padding: 6px 13px;
+}
+
+.addToCart:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+.addToCart:not(:hover) {
+    transform: scale(1);
+    transition: 0.2s;
+}
+
+.countAndButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.amountButton{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
+}
+
+.amountButton:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.count {
+    border: 1.5px solid var(--primary-color);
+    border-radius: 8px;
+    width: 45px;
+    padding: 3px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.countAndButtons input::-webkit-inner-spin-button{
+    appearance: none
+}
+
+input[type=submit]{
+    display: none;
+}
