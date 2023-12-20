@@ -19,13 +19,12 @@ export default function Cart(props) {
         </button>
       </div>
       <div className="cartItems">
-        {/* {props.cart.map(cartItem =>
+        {Object.values(props.cart).map(cartItem =>
           <div className="cartItem">
             <div className='item'>
               <Item
                 key={cartItem.id}
-                id={cartItem.id}
-                fruitName={cartItem.name}
+                item={cartItem}
                 fruitImgCart={cartItem.image}
                 itemTotal={Number((cartItem.count * cartItem.price).toFixed(2))}
                 cartItemon={cartItem.count}
@@ -34,7 +33,7 @@ export default function Cart(props) {
               />
             </div>
           </div>
-        )} */}
+        )}
       </div>
       <div className="payArea">
         <button className="pay">

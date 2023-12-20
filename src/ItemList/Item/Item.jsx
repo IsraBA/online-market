@@ -16,11 +16,21 @@ export default function Item(props) {
         else {
             newCart[props.item.id] = { ...props.item, count: 1 }
         }
-        return props.setCart(newCart);
+        props.setCart(newCart);
     };
 
     const handleMinus = () => {
+        // בדיקה אם קיים בעגלה
+        if (props.cart[props.item.id]) {
         let newCart = { ...props.cart }
+            if (newCart[props.item.id].count > 1) {
+                newCart[props.item.id].count -=1
+            }
+            else{
+                delete newCart[props.item.id];
+            }
+            props.setCart(newCart);
+        }
     }
 
     // const handleInput = (e) => {
@@ -54,6 +64,7 @@ export default function Item(props) {
 
     return (
         <>
+            
             {/* {props.cartItemon ? <button className='removeItem' onClick={() => props.setCart((prevCart =>
                         prevCart.filter(cartItem => cartItem.id !== props.id)
                     ))}><FontAwesomeIcon icon={faTrash} /></button> : ""} */}
