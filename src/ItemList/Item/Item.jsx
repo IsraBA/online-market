@@ -9,18 +9,18 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 export default function Item(props) {
 
     const handlePlus = () => {
-        let newCart = {...props.cart}
-       if (newCart[props.item.id]) {
-        newCart[props.item.id].count += 1
-       }
-       else {
-        newCart[props.item.id] = {...props.item, count: 1}
-       }
-       return props.setCart(newCart);
+        let newCart = { ...props.cart }
+        if (newCart[props.item.id]) {
+            newCart[props.item.id].count += 1
+        }
+        else {
+            newCart[props.item.id] = { ...props.item, count: 1 }
+        }
+        return props.setCart(newCart);
     };
 
     const handleMinus = () => {
-
+        let newCart = { ...props.cart }
     }
 
     // const handleInput = (e) => {
@@ -57,7 +57,7 @@ export default function Item(props) {
             {/* {props.cartItemon ? <button className='removeItem' onClick={() => props.setCart((prevCart =>
                         prevCart.filter(cartItem => cartItem.id !== props.id)
                     ))}><FontAwesomeIcon icon={faTrash} /></button> : ""} */}
-            <div className='fruitName'>{props.item.fruitName}</div>
+            <div className='fruitName'>{props.item.name}</div>
             {props.item.image ? <div className='fruitImg'><img src={props.item.image} alt={props.item.fruitName} /></div> : ""}
             {props.item.price ? <div className='price'>{props.item.price}$</div> : ""}
             {/* יצירת כפתורים בסגנון שונה לעגלה ולתוכן */}
@@ -77,9 +77,9 @@ export default function Item(props) {
                 :
                 <div>
                     {/* {props.count ? */}
-                        <div className='countAndButtons'>
-                            <button className='amountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
-                            {/* <form onSubmit={handleSubmit}>
+                    <div className='countAndButtons'>
+                        <button className='amountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
+                        {/* <form onSubmit={handleSubmit}>
                                 <input
                                     type="number"
                                     min="1"
@@ -91,13 +91,13 @@ export default function Item(props) {
                                 />
                                 <input type="submit" value="Submit" />
                             </form> */}
-                            <span className='count'>{props.cart[props.id]?.count || 0}</span>
-                            <button
-                                className='amountButton'
-                                onClick={handlePlus}
-                            ><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {/* :
+                        <span className='count'>{props.cart[props.item.id]?.count || 0}</span>
+                        <button
+                            className='amountButton'
+                            onClick={handlePlus}
+                        ><FontAwesomeIcon icon={faPlus} /></button>
+                    </div>
+                    {/* :
                         <button className='addToCart' onClick={handlePlus}>Add To Cart</button>
                     } */}
                 </div>}
