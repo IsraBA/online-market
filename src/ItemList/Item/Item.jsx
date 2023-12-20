@@ -3,6 +3,7 @@ import './Item.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Item(props) {
@@ -89,7 +90,9 @@ export default function Item(props) {
 
     return (
         <>
-
+            {props.cartItemon ? <button className='removeItem' onClick={() => props.setCart((prevCart =>
+                        prevCart.filter(cartItem => cartItem.id !== props.id)
+                    ))}><FontAwesomeIcon icon={faTrash} /></button> : ""}
             <div className='fruitName'>{props.fruitName}</div>
             {props.image ? <div className='fruitImg'><img src={props.image} alt={props.fruitName} /></div> : ""}
             {props.price ? <div className='price'>{props.price}$</div> : ""}

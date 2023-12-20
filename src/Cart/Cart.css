@@ -76,6 +76,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .cartImage {
@@ -160,4 +161,25 @@
     filter: brightness(1.1);
     transition: 0.2s;
     cursor: pointer;
+}
+
+
+/* הגדרת כפתור הסרת המוצר */
+.removeItem{
+    position: absolute;
+    top: -13px;
+    left: -18px;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    display: none;
+}
+
+.removeItem:hover{
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.cartItem:hover .removeItem{
+    display: block;
 }
