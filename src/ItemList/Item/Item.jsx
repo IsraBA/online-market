@@ -57,9 +57,9 @@ export default function Item(props) {
             {/* {props.cartItemon ? <button className='removeItem' onClick={() => props.setCart((prevCart =>
                         prevCart.filter(cartItem => cartItem.id !== props.id)
                     ))}><FontAwesomeIcon icon={faTrash} /></button> : ""} */}
-            <div className='fruitName'>{props.fruitName}</div>
-            {props.image ? <div className='fruitImg'><img src={props.image} alt={props.fruitName} /></div> : ""}
-            {props.price ? <div className='price'>{props.price}$</div> : ""}
+            <div className='fruitName'>{props.item.fruitName}</div>
+            {props.item.image ? <div className='fruitImg'><img src={props.item.image} alt={props.item.fruitName} /></div> : ""}
+            {props.item.price ? <div className='price'>{props.item.price}$</div> : ""}
             {/* יצירת כפתורים בסגנון שונה לעגלה ולתוכן */}
             {props.cartItemon ?
                 <div className="countButtonsTotal">
@@ -76,7 +76,7 @@ export default function Item(props) {
                 </div>
                 :
                 <div>
-                    {props.count ?
+                    {/* {props.count ? */}
                         <div className='countAndButtons'>
                             <button className='amountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
                             {/* <form onSubmit={handleSubmit}>
@@ -91,15 +91,15 @@ export default function Item(props) {
                                 />
                                 <input type="submit" value="Submit" />
                             </form> */}
-                            <span className='count'>{props.count ? props.count : 0}</span>
+                            <span className='count'>{props.cart[props.id]?.count || 0}</span>
                             <button
                                 className='amountButton'
                                 onClick={handlePlus}
                             ><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
-                        :
+                        {/* :
                         <button className='addToCart' onClick={handlePlus}>Add To Cart</button>
-                    }
+                    } */}
                 </div>}
 
 

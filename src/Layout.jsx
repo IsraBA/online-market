@@ -21,15 +21,15 @@ export default function Layout() {
     }
   }, [cart])
 
-  useEffect(() => {
-    setTotal(prevTotal => {
-      let newTotal = 0;
-      cart.forEach(cartItem => {
-        newTotal += cartItem.price * cartItem.count;
-      });
-      return Number(newTotal.toFixed(2));
-    });
-  }, [cart]);
+  // useEffect(() => {
+  //   setTotal(prevTotal => {
+  //     let newTotal = 0;
+  //     cart.forEach(cartItem => {
+  //       newTotal += cartItem.price * cartItem.count;
+  //     });
+  //     return Number(newTotal.toFixed(2));
+  //   });
+  // }, [cart]);
 
   return (
     <div className='layout'>
