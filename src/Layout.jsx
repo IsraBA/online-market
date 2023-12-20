@@ -3,6 +3,7 @@ import Content from './Content/Content'
 import './Layout.css'
 import { useState, useEffect } from 'react'
 import fruitSRC from './fruitsSRC.json'
+import DataContext from './context/DataContext'
 
 export default function Layout() {
 
@@ -32,10 +33,12 @@ export default function Layout() {
   // }, [cart]);
 
   return (
-    <div className='layout'>
-      <div className='cartLayout'>
-        <Cart cart={cart} setCart={setCart} total={total} /></div>
-      <div className='contentLayout'><Content fruits={fruits} cart={cart} setCart={setCart} /></div>
-    </div>
+    <DataContext.Provider value={{ cart, setCart }}>
+      <div className='layout'>
+        <div className='cartLayout'>
+          <Cart total={total} /></div>
+        <div className='contentLayout'><Content fruits={fruits}/></div>
+      </div>
+    </DataContext.Provider>
   )
 }
