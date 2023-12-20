@@ -10,7 +10,7 @@ export default function Layout() {
 
   const [cart, setCart] = useState(
     localStorage.getItem('cart') ?
-      JSON.parse(localStorage.getItem('cart')) : []);
+      JSON.parse(localStorage.getItem('cart')) : {});
 
   const [total, setTotal] = useState(0);
 

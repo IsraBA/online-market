@@ -14,12 +14,12 @@ export default function Cart(props) {
           <span className='cartIcon'><FontAwesomeIcon icon={faCartShopping} /></span>
           <span>cart</span>
         </span>
-        <button className='removeAll' title="Remove all" onClick={() => props.setCart([])}>
+        <button className='removeAll' title="Remove all" onClick={() => props.setCart({})}>
           <img className='removeAllImg' src="https://static.thenounproject.com/png/249220-200.png" alt="remove all"/>
         </button>
       </div>
       <div className="cartItems">
-        {props.cart.map(cartItem =>
+        {/* {props.cart.map(cartItem =>
           <div className="cartItem">
             <div className='item'>
               <Item
@@ -34,7 +34,7 @@ export default function Cart(props) {
               />
             </div>
           </div>
-        )}
+        )} */}
       </div>
       <div className="payArea">
         <button className="pay">

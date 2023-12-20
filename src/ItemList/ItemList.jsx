@@ -10,14 +10,9 @@ export default function ItemList(props) {
                 {props.filtered.map(fruit => {
                     return <div className="product"> <Item
                         key={fruit.id}
-                        id={fruit.id}
-                        fruitName={fruit.name}
-                        image={fruit.image}
-                        price={fruit.price}
+                        item={fruit}
                         setCart={props.setCart}
-                        count={props.cart.find(cartItem => cartItem.id === fruit.id) ?
-                            props.cart.find(cartItem => cartItem.id === fruit.id).count :
-                            undefined}
+                        cart={props.cart}
                     />
                     </div>
                 })}
