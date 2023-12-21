@@ -2,14 +2,22 @@ import React from 'react'
 import './Cart.css'
 import Item from '../ItemList/Item/Item'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import DataContext from '../context/DataContext'
+import CartItem from './CartItem/CartItem'
 
 
 export default function Cart(props) {
 
-  const { cart, setCart } = useContext(DataContext)
+  const { cart, setCart } = useContext(DataContext);
+
+  const removeItem = (id) => {
+    let newCart = { ...cart }
+    delete newCart[id];
+    setCart(newCart);
+}
 
   return (
     <div className='cart'>
@@ -25,16 +33,14 @@ export default function Cart(props) {
       <div className="cartItems">
         {Object.values(cart).map(cartItem =>
           <div className="cartItem">
-            <div className='item'>
-              <Item
+            <button className='removeItem' onClick={() => removeItem(cartItem.id)}>
+                <FontAwesomeIcon icon={faX} />
+            </button>
+              <CartItem
                 key={cartItem.id}
                 item={cartItem}
-                fruitImgCart={cartItem.image}
                 itemTotal={Number((cartItem.count * cartItem.price).toFixed(2))}
-                cartItemon={cartItem.count}
-                count={cartItem.count}
               />
-            </div>
           </div>
         )}
       </div>

@@ -11,8 +11,6 @@ export default function ItemList(props) {
                     return <div className="product"> <Item
                         key={fruit.id}
                         item={fruit}
-                        setCart={props.setCart}
-                        cart={props.cart}
                     />
                     </div>
                 })}
