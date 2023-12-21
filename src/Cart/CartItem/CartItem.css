@@ -1,0 +1,54 @@
+.fruitImgCart {
+    max-width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    border-right: 1px solid var(--primary-color);
+    /* border: 1px solid black; */
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemPrice {
+    font-size: 7px;
+    color: gray;
+}
+
+.countAndButtonsCart {
+    text-shadow: 1px 1px 4px #0000004f;
+    margin-bottom: -7px;
+}
+
+.amountButtonCart {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.554));
+}
+
+.amountButtonCart:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.itemCount {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 20px;
+    /* border: 1px solid black; */
+}
+
+.itemTotal {
+    position: absolute;
+    bottom: 5px;
+    right: 2px;
+    color: black;
+    font-weight: 300;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px #00000065;
+}
