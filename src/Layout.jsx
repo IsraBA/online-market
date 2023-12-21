@@ -4,16 +4,16 @@ import './Layout.css'
 import { useState, useEffect } from 'react'
 import fruitSRC from './fruitsSRC.json'
 import DataContext from './context/DataContext'
+import data from '../data'
 
 export default function Layout() {
 
-  const [fruits, setFruits] = useState(fruitSRC);
+  const { fruits, vegetables, alcohol, dairy } = data;
+  const [category, setCategory] = useState([]);
 
   const [cart, setCart] = useState(
     localStorage.getItem('cart') ?
       JSON.parse(localStorage.getItem('cart')) : {});
-
-  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     let cartJSON = localStorage.setItem('cart', JSON.stringify(cart));
@@ -22,23 +22,43 @@ export default function Layout() {
     }
   }, [cart])
 
-  // useEffect(() => {
-  //   setTotal(prevTotal => {
-  //     let newTotal = 0;
-  //     cart.forEach(cartItem => {
-  //       newTotal += cartItem.price * cartItem.count;
-  //     });
-  //     return Number(newTotal.toFixed(2));
-  //   });
-  // }, [cart]);
-
   return (
     <DataContext.Provider value={{ cart, setCart }}>
       <div className='layout'>
         <div className='cartLayout'>
-          <Cart total={total} /></div>
-        <div className='contentLayout'><Content fruits={fruits}/></div>
+          <Cart />
+        </div>
+        <div className="market">
+          <div className="categories" id={category.length == 0 ? "" : 'minimized'}>
+            <div className="category" onClick={() => setCategory(fruits)}>
+              <div className="imgHolder">
+                <img src="https://png.pngtree.com/png-clipart/20230310/ourmid/pngtree-fresh-fruit-png-image_6642661.png" alt="Fruits" />
+              </div>
+              Fruits
+            </div>
+            <div className="category" onClick={() => setCategory(vegetables)}>
+              <div className="imgHolder">
+                <img src="https://static.vecteezy.com/system/resources/previews/022/984/730/non_2x/vegetable-transparent-free-png.png" alt="Vegetables" />
+              </div>
+              Vegetables
+            </div>
+            <div className="category" onClick={() => setCategory(alcohol)}>
+              <div className="imgHolder">
+                <img src="https://roust.com/f/img/responsive/bottles@1x.png" alt="Alcohol" />
+              </div>
+              Alcohol
+            </div>
+            <div className="category" onClick={() => setCategory(dairy)}>
+              <div className="imgHolder">
+                <img src="https://png.monster/wp-content/uploads/2022/06/png.monster-790.png" alt="Dairy" />
+              </div>
+              Dairy
+            </div>
+          </div>
+          <div className='contentLayout' id={category.length == 0 ? 'hidden' : ""} ><Content items={category} /></div>
+        </div>
       </div>
     </DataContext.Provider>
   )
 }
+

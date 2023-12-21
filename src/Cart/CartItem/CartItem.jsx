@@ -41,7 +41,7 @@ export default function CartItem(props) {
         <>
             <div className='fruitImgCart'><img src={item.image} alt={item.fruitName} /></div>
             <div className="details">
-                <div className='fruitName'>
+                <div className='fruitNameCart'>
                     {item.name}
                 </div>
                 <div className='itemPrice'>Price per unit: {item.price}$</div>

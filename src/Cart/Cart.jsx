@@ -1,6 +1,6 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import './Cart.css'
-import Item from '../ItemList/Item/Item'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -12,12 +12,19 @@ import CartItem from './CartItem/CartItem'
 export default function Cart(props) {
 
   const { cart, setCart } = useContext(DataContext);
+  const [total, setTotal] = useState(0);
+
+  let newTotal = 0;
+  Object.values(cart).forEach(cartItem => {
+    newTotal += cartItem.price * cartItem.count
+  });
+  setTotal(Number(newTotal.toFixed(2)));
 
   const removeItem = (id) => {
     let newCart = { ...cart }
     delete newCart[id];
     setCart(newCart);
-}
+  }
 
   return (
     <div className='cart'>
@@ -34,19 +41,19 @@ export default function Cart(props) {
         {Object.values(cart).map(cartItem =>
           <div className="cartItem">
             <button className='removeItem' onClick={() => removeItem(cartItem.id)}>
-                <FontAwesomeIcon icon={faX} />
+              <FontAwesomeIcon icon={faX} />
             </button>
-              <CartItem
-                key={cartItem.id}
-                item={cartItem}
-                itemTotal={Number((cartItem.count * cartItem.price).toFixed(2))}
-              />
+            <CartItem
+              key={cartItem.id}
+              item={cartItem}
+              itemTotal={Number((cartItem.count * cartItem.price).toFixed(2))}
+            />
           </div>
         )}
       </div>
       <div className="payArea">
         <button className="pay">
-          <FontAwesomeIcon icon={faCartShopping} /> Pay: {props.total}$
+          <FontAwesomeIcon icon={faCartShopping} /> Pay: {total}$
         </button>
       </div>
     </div>

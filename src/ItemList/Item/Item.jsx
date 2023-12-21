@@ -84,7 +84,7 @@ export default function Item(props) {
                         {/* <span className='count'>{cart[props.item.id]?.count || 0}</span> */}
                         <button
                             className='amountButton'
-                            onClick={props.item.count < 100 ? handlePlus : () => {}}
+                            onClick={cart[props.item.id].count < 100 ? handlePlus : () => {}}
                         ><FontAwesomeIcon icon={faPlus} /></button>
                     </div>
                     :
