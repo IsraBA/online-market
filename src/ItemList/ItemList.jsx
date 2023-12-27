@@ -1,17 +1,27 @@
 import Item from './Item/Item'
 import './ItemList.css'
+import { useEffect, useState } from 'react'
 
+export default function ItemList({ category }) {
 
-export default function ItemList(props) {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        // api >> response >> body >> setCat/Object.keys
+        fetch(`https://jbh-mockserver.onrender.com/categories/${category}`)
+            .then(j => j.json())
+            .then(response => setItems(response))
+    }, []);
 
     return (
         <div className="items">
             <div className="fruits">
-                {props.filtered.map(fruit => {
-                    return <div className="product"> <Item
-                        key={fruit.id}
-                        item={fruit}
-                    />
+                {items.map(item => {
+                    return <div className="product">
+                        <Item
+                            key={item.id}
+                            item={item}
+                        />
                     </div>
                 })}
             </div>

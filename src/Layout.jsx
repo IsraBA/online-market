@@ -3,14 +3,10 @@ import Content from './Content/Content'
 import './Layout.css'
 import { useState, useEffect } from 'react'
 import DataContext from './context/DataContext'
-import data from '../data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
 export default function Layout() {
-
-  const { fruits, vegetables, alcohol, dairy } = data;
-  const [category, setCategory] = useState([]);
 
   const [cart, setCart] = useState(
     localStorage.getItem('cart') ?
@@ -30,7 +26,7 @@ export default function Layout() {
           <Cart />
         </div>
         <div className="market">
-          <div className="categories" id={category.length == 0 ? "" : 'minimized'}>
+          {/* <div className="categories" id={category.length == 0 ? "" : 'minimized'}>
             <div className="home" onClick={() => setCategory([])}>
               <FontAwesomeIcon icon={faHouse} />
             </div>
@@ -61,9 +57,10 @@ export default function Layout() {
               </div>
               Dairy
             </div>
-          </div>
-          <div className='contentLayout' id={category.length == 0 ? 'hidden' : ""} >
-            <Content items={category} />
+          </div> */}
+          {/* <div className='contentLayout' id={category.length == 0 ? 'hidden' : ""} > */}
+          <div>
+            <Content/>
           </div>
         </div>
       </div>
