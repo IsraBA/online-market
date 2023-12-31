@@ -1,14 +1,17 @@
-import './Item.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import './SingleItem.css'
+import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import DataContext from '../../context/DataContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleArrowLeft, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Item({ item }) {
+export default function SingleItem({ url }) {
 
+    console.log(url);
     const { cart, setCart } = useContext(DataContext);
+    const [item, setItem] = useState({});
 
     const handlePlus = () => {
         let newCart = { ...cart }
@@ -59,22 +62,41 @@ export default function Item({ item }) {
         e.preventDefault();
     };
 
+    useEffect(() => {
+        fetch(`https://jbh-mockserver.onrender.com${url}`)
+            .then(j => j.json())
+            .then(response => setItem(response));
+    }, []);
+
     return (
-        <>
-            <div className='fruitName'>{item.name}</div>
-            <div className='fruitImg'><img src={item.image} alt={item.fruitName} /></div>
-            <div className='price'>{item.price}$</div>
-            <div>
-                {/* אם המוצר קיים בעגלה יוצגו כפתורי הפלוס מינוס */}
+        <div className='sItem'>
+            <button
+                onClick={() => location.href = '/categories'}
+                className="back">
+                <FontAwesomeIcon className='CircleArrowLeft' icon={faCircleArrowLeft} />
+            </button>
+            <div className='sItemImg'><img src={item.image} alt={item.name} /></div>
+            <div className='sItemDetails'>
+                <div className="sItemName">{item.name}</div>
+                <div className="sItemId"><span>Item ID</span>{item.id}</div>
+                <div className="sItemPrice"><span>Price</span>{item.price}$</div>
+                <div className="about"><span>About</span>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Molestiae id repellendus quas optio, eligendi consequatur iste!
+                        Necessitatibus natus doloribus officiis, ipsa ut sint optio.
+                        Voluptatibus eos tempora excepturi.
+                    </p>
+                </div>
                 {cart[item.id] ?
-                    <div className='countAndButtons' onClick={(e) => e.stopPropagation()}>
-                        <button className='amountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
+                    <div className='sCountAndButtons' onClick={(e) => e.stopPropagation()}>
+                        <button className='sAmountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="number"
                                 min="1"
                                 max="100"
-                                className='count'
+                                className='sCount'
                                 name='itemCount'
                                 value={cart[item.id]?.count || 0}
                                 onChange={handleInput}
@@ -83,17 +105,17 @@ export default function Item({ item }) {
                         </form>
                         {/* <span className='count'>{cart[item.id]?.count || 0}</span> */}
                         <button
-                            className='amountButton'
+                            className='sAmountButton'
                             onClick={cart[item.id].count < 100 ? handlePlus : () => { }}
                         ><FontAwesomeIcon icon={faPlus} /></button>
                     </div>
                     :
                     // אם המוצר לא קיים בעגלה יוצג כפתור הוסף לעגלה
-                    <button className='addToCart' onClick={(e) => {e.stopPropagation(), handlePlus()}}>Add To Cart</button>
+                    <button className='sAddToCart' onClick={(e) => { e.stopPropagation(), handlePlus() }}>Add To Cart</button>
                 }
             </div>
-
-
-        </>
+        </div>
     )
 }
+
+// {"id":"01","name":"Apple","color":"Red","emoji":"🍎","price":1.99,"image":"https://i.pinimg.com/originals/c4/d9/ee/c4d9eefa0d4136938ed03c7359286f7a.png"}

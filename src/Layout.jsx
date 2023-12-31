@@ -19,6 +19,12 @@ export default function Layout() {
     }
   }, [cart])
 
+  // פתיחת הקטגוריות כשהאתר עולה
+  useEffect(() => {
+    if (location.pathname === '/') {location.href = '/categories'}
+  }, [])
+  
+
   return (
     <DataContext.Provider value={{ cart, setCart }}>
       <div className='layout'>
@@ -59,7 +65,7 @@ export default function Layout() {
             </div>
           </div> */}
           {/* <div className='contentLayout' id={category.length == 0 ? 'hidden' : ""} > */}
-          <div>
+          <div className='content'>
             <Content/>
           </div>
         </div>

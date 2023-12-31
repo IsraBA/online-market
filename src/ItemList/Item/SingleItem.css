@@ -1,0 +1,137 @@
+.sItem {
+    width: min-content;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.back {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    font-size: 35px;
+    color: var(--primary-color);
+    display: inline-block;
+}
+.CircleArrowLeft {
+    transform: scaleX(-1);
+}
+.back:hover {
+    cursor: pointer;
+    filter: brightness(1.4);
+    transition: 0.2s;
+}
+.back:not(:hover) {
+    filter: brightness(1);
+    transition: 0.2s;
+}
+
+
+.sItemImg {
+    width: 500px;
+    height: 500px;
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--primary-color);
+}
+
+.sItemImg img {
+    /* width: 100%; */
+    max-height: 100%;
+    object-fit: fill;
+}
+
+.sItemDetails {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sItemName {
+    font-size: 50px;
+    font-weight: 700;
+    display: flex;
+}
+/* .sItemName .dot {
+    color: var(--primary-color);
+} */
+
+.sItem span {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: 25px;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 10px;
+    /* padding-bottom: 10px; */
+}
+
+.about p {
+    width: 450px;
+}
+
+.sAddToCart {
+    /* width: fit-content; */
+    height: 70px;
+    font-size: 30px;
+    /* font-weight: 600; */
+    background-color: rgba(224, 0, 0, 0.042);
+    border-radius: 500px;
+    border: 3px solid rgb(224, 0, 0);
+    padding: 8px 25px;
+}
+
+.sAddToCart:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+.sAddToCart:not(:hover) {
+    transform: scale(1);
+    transition: 0.2s;
+}
+
+.sCountAndButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.sAmountButton {
+    font-size: 50px;
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
+}
+
+.sAmountButton:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.sCount {
+    font-size: 50px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    width: 150px;
+    padding: 5px 0;
+    margin: 0 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.sCountAndButtons input::-webkit-inner-spin-button{
+    appearance: none
+}
