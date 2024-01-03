@@ -18,11 +18,6 @@ export default function Layout() {
       cartJSON;
     }
   }, [cart])
-
-  // פתיחת הקטגוריות כשהאתר עולה
-  useEffect(() => {
-    if (location.pathname === '/') {location.href = '/categories'}
-  }, [])
   
 
   return (

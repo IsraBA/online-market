@@ -6,6 +6,8 @@ import Categories from '../Categories/Categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faHouse } from '@fortawesome/free-solid-svg-icons'
 import SingleItem from '../ItemList/Item/SingleItem';
+import { Link, Route, Routes } from 'react-router-dom';
+import NotFound from '../NotFound/NotFound';
 
 
 
@@ -28,32 +30,19 @@ export default function Content() {
   //   setFiltered(inp ? props.items.filter(f => f.name.toLowerCase().includes(inp)) : props.items)
   // }
 
-  const [url, setUrl] = useState()
-
-  useEffect(() => {
-    if (location.pathname !== "/categories") {
-      setUrl(location.pathname)
-    }
-  }, [])
-
-
   return (
     <div className='content'>
+      <Routes>
+        <Route path='/' element={<Categories />} />
+        {/*             where                  what       */}
+        <Route path='/categories' element={<Categories />} />
+        <Route path='/categories/:categoryName' element={<div className='itemList'><ItemList /></div>} />
+        <Route path='/items/:itemID' element={<div className="item" ><SingleItem /></div>} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+
+      <Link className="home" to={"/categories"}><FontAwesomeIcon icon={faHouse} /></Link>
       {/* <div className='menu'><Menu colors={colors} handleColor={handleColor} handleInput={handleInput}/></div> */}
-      {url ?
-        (url.includes("/categories") ?
-          <div className='itemList'><ItemList url={url} /></div> :
-          <div className="item" >
-            <SingleItem url={url} />
-            </div>
-        ) : (
-          <Categories />)
-      }
-      {url &&
-        <div className="home"
-          onClick={() => location.href = "/categories"}>
-          <FontAwesomeIcon icon={faHouse} />
-        </div>}
     </div>
   )
 }

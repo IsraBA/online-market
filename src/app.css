@@ -10,6 +10,11 @@
     font-family: Nunito;
 }
 
+#styledLink {
+    text-decoration: none;
+    color: black;
+}
+
 .items {
     margin: 20px;
     display: flex;

@@ -5,11 +5,13 @@ import { useContext } from 'react'
 import DataContext from '../../context/DataContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { Link, useParams } from 'react-router-dom';
 
 
-export default function SingleItem({ url }) {
+export default function SingleItem() {
 
-    console.log(url);
+    let { itemID } = useParams();
+
     const { cart, setCart } = useContext(DataContext);
     const [item, setItem] = useState({});
 
@@ -63,18 +65,18 @@ export default function SingleItem({ url }) {
     };
 
     useEffect(() => {
-        fetch(`https://jbh-mockserver.onrender.com${url}`)
+        fetch(`https://jbh-mockserver.onrender.com/items/${itemID}`)
             .then(j => j.json())
             .then(response => setItem(response));
     }, []);
 
     return (
         <div className='sItem'>
-            <button
-                onClick={() => location.href = '/categories'}
-                className="back">
-                <FontAwesomeIcon className='CircleArrowLeft' icon={faCircleArrowLeft} />
-            </button>
+            <Link id='styledLink' to={'/categories'}>
+                <button className="back">
+                    <FontAwesomeIcon className='CircleArrowLeft' icon={faCircleArrowLeft} />
+                </button>
+            </Link>
             <div className='sItemImg'><img src={item.image} alt={item.name} /></div>
             <div className='sItemDetails'>
                 <div className="sItemName">{item.name}</div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 export default function Categories() {
@@ -15,14 +16,23 @@ export default function Categories() {
 
     return (
         <div className="categories">
-            {Object.entries(catArray).map(([category, image]) => {
-                return <div className="category" key={category} onClick={() => location.href = "/categories/" + category}>
-                    <div className="imgHolder">
-                        <img src={image} alt={category} />
-                    </div>
-                    {category}
-                </div>  
-            })}
+            {catArray ?
+                Object.entries(catArray).map(([category, image]) => {
+                    return (
+                        <Link id='styledLink' to={"/categories/" + category}>
+                            <div className="category" key={category}>
+                                <div className="imgHolder">
+                                    <img src={image} alt={category} />
+                                </div>
+                                {category}
+                            </div>
+                        </Link>
+                    )
+                })
+                :
+                <div className="loading">
+                    <img src="https://cdn.dribbble.com/users/2046015/screenshots/5973727/06-loader_telega.gif" alt="loading gif" />
+                </div>}
         </div>
     )
 }
