@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: -20;
+    /* z-index: -20; */
 }
 
 .cartHeader {
@@ -25,9 +25,14 @@
 .removeAll {
     background-color: transparent;
     border: none;
-    border-left: 1px solid rgb(33, 33, 33);
+    /* border-left: 1px solid rgb(33, 33, 33); */
     position: relative;
     padding: 2px 0 2px 8px;
+    display: none;
+}
+
+.cart:hover .removeAll {
+    display: block;
 }
 
 .removeAll::before {

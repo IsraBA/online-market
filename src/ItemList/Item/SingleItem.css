@@ -1,5 +1,6 @@
 .sItem {
-    width: min-content;
+    width: 85%;
+    height: 100%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
@@ -34,8 +35,9 @@
 
 
 .sItemImg {
-    width: 500px;
-    height: 500px;
+    width: 60%;
+    height: 60%;
+    /* padding: 85px 0 85px 50px; */
     padding-left: 50px;
     display: flex;
     align-items: center;
@@ -45,15 +47,18 @@
 
 .sItemImg img {
     /* width: 100%; */
+    /* max-width: 400px ; */
     max-height: 100%;
     object-fit: fill;
 }
 
 .sItemDetails {
+    width: 50%;
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: hidden;
 }
 
 .sItemName {
@@ -76,9 +81,9 @@
     /* padding-bottom: 10px; */
 }
 
-.about p {
-    width: 450px;
-}
+/* .about p {
+    max-width: 450px;
+} */
 
 .sAddToCart {
     /* width: fit-content; */

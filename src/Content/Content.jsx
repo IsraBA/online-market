@@ -1,6 +1,5 @@
 import ItemList from '../ItemList/ItemList'
 import Menu from "../Menu/Menu"
-import { useState, useEffect } from 'react'
 import './Content.css'
 import Categories from '../Categories/Categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,19 +30,18 @@ export default function Content() {
   // }
 
   return (
-    <div className='content'>
+    <>
       <Routes>
         <Route path='/' element={<Categories />} />
         {/*             where                  what       */}
         <Route path='/categories' element={<Categories />} />
         <Route path='/categories/:categoryName' element={<div className='itemList'><ItemList /></div>} />
         <Route path='/items/:itemID' element={<div className="item" ><SingleItem /></div>} />
+        <Route path='/404' element={<NotFound />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-
-      <Link className="home" to={"/categories"}><FontAwesomeIcon icon={faHouse} /></Link>
       {/* <div className='menu'><Menu colors={colors} handleColor={handleColor} handleInput={handleInput}/></div> */}
-    </div>
+    </>
   )
 }
 

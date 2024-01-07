@@ -5,12 +5,14 @@ import { useContext } from 'react'
 import DataContext from '../../context/DataContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 export default function SingleItem() {
 
     let { itemID } = useParams();
+
+    const nav = useNavigate();
 
     const { cart, setCart } = useContext(DataContext);
     const [item, setItem] = useState({});
@@ -67,7 +69,8 @@ export default function SingleItem() {
     useEffect(() => {
         fetch(`https://jbh-mockserver.onrender.com/items/${itemID}`)
             .then(j => j.json())
-            .then(response => setItem(response));
+            .then(response => setItem(response))
+            .catch(() => nav("/404"));
     }, []);
 
     return (
