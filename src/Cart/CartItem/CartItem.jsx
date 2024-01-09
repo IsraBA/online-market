@@ -5,12 +5,14 @@ import './CartItem.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function CartItem(props) {
 
     const { item } = props;
     const { cart, setCart } = useContext(DataContext);
+    const nav = useNavigate();
 
     const handlePlus = () => {
         let newCart = { ...cart }
@@ -39,7 +41,7 @@ export default function CartItem(props) {
 
     return (
         <>
-            <div className='fruitImgCart'><img src={item.image} alt={item.fruitName} /></div>
+            <div className='fruitImgCart' onClick={() => nav(`/items/` + item.id)}><img src={item.image} alt={item.fruitName} /></div>
             <div className="details">
                 <div className='fruitNameCart'>
                     {item.name}

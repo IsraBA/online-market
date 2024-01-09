@@ -9,7 +9,7 @@ import DataContext from '../context/DataContext'
 import CartItem from './CartItem/CartItem'
 
 
-export default function Cart(props) {
+export default function Cart() {
 
   const { cart, setCart } = useContext(DataContext);
   const [total, setTotal] = useState(0);

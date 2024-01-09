@@ -52,7 +52,7 @@ export default function Form() {
 
         setFormError(oldForm => ({ ...oldForm, [name]: '' }));
 
-        if (name === 'name' && value.length < 2 && value.length !== 0) {
+        if (name === 'userName' && value.length < 2 && value.length !== 0) {
             setFormError(oldForm => ({ ...oldForm, [name]: '* Name must be at least 2 letters' }));
         }
     }
