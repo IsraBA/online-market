@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 10px;
-    border-right: 1px solid var(--primary-color);
+    padding-left: 10px;
+    border-left: 1px solid var(--primary-color);
     /* border: 1px solid black; */
 }
 
@@ -55,7 +55,7 @@
 .itemTotal {
     position: absolute;
     bottom: 5px;
-    right: 2px;
+    left: 2px;
     color: black;
     font-weight: 300;
     font-size: 16px;

@@ -4,24 +4,25 @@ import Login from './Login/Login'
 import './app.css'
 import { useState, useEffect } from 'react'
 import DataContext from './context/DataContext'
+import axios from 'axios'
 
 
 export default function App() {
 
-  const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : {});
+  const [user, setUser] = useState("");
   const nav = useNavigate();
 
   useEffect(() => {
-    console.log(user);
-    if (user?.status) {
-      localStorage.user = JSON.stringify(user);
+    if (localStorage.token) {
+      axios.get('http://localhost:2500/user/user',
+        { headers: { Authorization: `Bearer ${localStorage.token}` } }
+      ).then((res) => setUser(res.data));
       nav('/categories');
     }
-  }, [user])
-  
+  }, [localStorage.token])
 
   return (
-    <DataContext.Provider value={{user, setUser}}>
+    <DataContext.Provider value={{ user, setUser }}>
       <div className='app'>
         <Routes>
           <Route path='/login' element={<Login />} />

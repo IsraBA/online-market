@@ -20,9 +20,9 @@ export default function Cart() {
   });
   setTotal(Number(newTotal.toFixed(2)));
 
-  const removeItem = (id) => {
+  const removeItem = (_id) => {
     let newCart = { ...cart }
-    delete newCart[id];
+    delete newCart[_id];
     setCart(newCart);
   }
 
@@ -31,7 +31,7 @@ export default function Cart() {
       <div className="cartHeader">
         <span>
           <span className='cartIcon'><FontAwesomeIcon icon={faCartShopping} /></span>
-          <span>cart</span>
+          <span>עגלה</span>
         </span>
         <button className='removeAll' title="Remove all" onClick={() => setCart({})}>
           <img className='removeAllImg' src="https://static.thenounproject.com/png/249220-200.png" alt="remove all" />
@@ -40,11 +40,11 @@ export default function Cart() {
       <div className="cartItems">
         {Object.values(cart).map(cartItem =>
           <div className="cartItem">
-            <button className='removeItem' onClick={() => removeItem(cartItem.id)}>
+            <button className='removeItem' onClick={() => removeItem(cartItem._id)}>
               <FontAwesomeIcon icon={faX} />
             </button>
             <CartItem
-              key={cartItem.id}
+              key={cartItem._id}
               item={cartItem}
               itemTotal={Number((cartItem.count * cartItem.price).toFixed(2))}
             />
@@ -53,7 +53,7 @@ export default function Cart() {
       </div>
       <div className="payArea">
         <button className="pay">
-          <FontAwesomeIcon icon={faCartShopping} /> Pay: {total}$
+          <FontAwesomeIcon icon={faCartShopping} /> לתשלום: {total}₪
         </button>
       </div>
     </div>

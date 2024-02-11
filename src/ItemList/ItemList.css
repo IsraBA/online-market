@@ -13,9 +13,30 @@
     box-shadow: 3px 4px 23px -3px rgba(0, 0, 0, 0.65);
     -webkit-box-shadow: 3px 4px 10px -3px rgba(0, 0, 0, 0.65);
     -moz-box-shadow: 3px 4px 23px -3px rgba(0, 0, 0, 0.65);
+    direction: rtl;
 }
 
 .product:hover {
     cursor: pointer;
+}
+
+.noItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    margin: 40px 0;
+}
+
+.noItems img {
+    height: 500px;
+}
+
+.noItems span{
+    font-size: 2rem;
+    font-weight: 600;
 }
 

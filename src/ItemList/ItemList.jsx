@@ -1,8 +1,8 @@
 import Item from './Item/Item'
 import './ItemList.css'
 import { useEffect, useState } from 'react'
-import SingleItem from './Item/SingleItem';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ItemList() {
 
@@ -13,10 +13,8 @@ export default function ItemList() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        // api >> response >> body >> setCat/Object.keys
-        fetch(`https://jbh-mockserver.onrender.com/categories/${categoryName}`)
-            .then(j => j.json())
-            .then(response => setItems(response))
+        axios.get('http://localhost:2500/item/' + categoryName)
+            .then(response => setItems(response.data))
             .catch(() => nav("/404"));
     }, []);
 
@@ -25,8 +23,8 @@ export default function ItemList() {
             <div className="fruits">
                 {items.map(item => {
                     return (
-                        <div className="product" onClick={() => nav("/items/" + item.id)}>
-                            <Item key={item.id} item={item} />
+                        <div className="product" onClick={() => nav("/items/" + item._id)}>
+                            <Item key={item._id} item={item} />
                         </div>
                     )
                 })}

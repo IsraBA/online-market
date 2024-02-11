@@ -13,37 +13,45 @@ export default function Form() {
     //    nav('/categories');
     //   }
 
-    const initialState = localStorage.user ? JSON.parse(localStorage.user) : { userName: '', password: '' };
+    const initialState = { email: '', password: '' };
     const [formState, setFormState] = useState(initialState);
-    const [formError, setFormError] = useState({ userName: '', password: '' })
+    const [formError, setFormError] = useState({ email: '', password: '' })
+    const [wrong, setWrong] = useState(false);
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,}$/;
+    const passwordRegex = /^.{5,}$/;
 
+    const goNext = (data) => {
+        localStorage.token = data,
+            nav('/'),
+            setFormState({ email: '', password: '' })
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (Object.values(formError).every((value) => !value.trim())) {
-            axios.post('https://jbh-mockserver.onrender.com/login', formState)
-            .then((response) => setUser(response.data));
-            nav('/')
-            setFormState({ userName: '', password: '' })
+            try {
+                axios.post('http://localhost:2500/login', formState)
+                    .then((res) => goNext(res.data));
+            } catch (error) {
+                // setWrong(true);
+                console.log(error.status)
+            }
         }
     };
 
     const handleChange = (e) => {
-        // console.log(e.target.userName, e.target.value);
+        // console.log(e.target.email, e.target.value);
         const { name, value } = e.target;
 
         setFormState(oldForm => {
             const newData = { ...oldForm, [name]: value }
-            localStorage.user = JSON.stringify({ ...newData, password: '' });
             return newData;
         });
 
         setFormError(oldForm => ({ ...oldForm, [name]: '' }));
 
         if (name === 'password' && !passwordRegex.test(value) && value.length !== 0) {
-            setFormError(oldForm => ({ ...oldForm, [name]: '* Password must contain 8 characters, one uppercase and lowercase letter, and one number. Special characters are optional.' }));
+            setFormError(oldForm => ({ ...oldForm, [name]: '* הסיסמה חייבת להכיל לפחות 5 תווים' }));
         }
     };
 
@@ -52,33 +60,34 @@ export default function Form() {
 
         setFormError(oldForm => ({ ...oldForm, [name]: '' }));
 
-        if (name === 'userName' && value.length < 2 && value.length !== 0) {
-            setFormError(oldForm => ({ ...oldForm, [name]: '* Name must be at least 2 letters' }));
+        if (name === 'email' && !emailRegex.test(value) && value.length !== 0) {
+            setFormError(oldForm => ({ ...oldForm, [name]: '* נא להזין אימייל תקין' }));
         }
     }
 
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
+            {wrong && <div className={styles.wrong}>שם משתמש או סיסמה שגויים</div>}
             {/* <h2>Log In</h2> */}
             <div className={styles.inputBox}>
-                <label>Name: &nbsp;</label>
-                <input type="text" name='userName'
+                <label>אימייל: &nbsp;</label>
+                <input type="email" name='email'
                     onChange={handleChange}
-                    value={formState.userName}
+                    value={formState.email}
                     onBlur={handleBlur}
                     required />
-                <div className={`${styles.error} ${formError.userName ? styles.vis : ''}`}>{formError.userName}</div>
+                <div className={`${styles.error} ${formError.email ? styles.vis : ''}`}>{formError.email}</div>
             </div>
             <div className={styles.inputBox}>
-                <label>Password: &nbsp;</label>
+                <label>סיסמה: &nbsp;</label>
                 <input type="password" name='password'
                     onChange={handleChange}
                     value={formState.password}
                     required />
                 <div className={`${styles.error} ${formError.password ? styles.vis : ''}`}>{formError.password}</div>
             </div>
-            <button id={styles.submit} type="submit">Log In</button>
+            <button id={styles.submit} type="submit">התחבר</button>
         </form>
     )
 }

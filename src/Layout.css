@@ -60,6 +60,7 @@ main {
     padding: 10px;
     transition: 0.3s all ease-in;
     position: relative;
+    direction: rtl;
 }
 
 #minimized {
@@ -121,10 +122,11 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* border-bottom: 2px solid var(--primary-color); */
+    border-bottom: 2px solid var(--primary-color);
     border-radius: 20px;
     margin-bottom: 8px;
     overflow: hidden;
+    padding: 0 10px;
 }
 
 .category img {

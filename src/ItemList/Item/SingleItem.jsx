@@ -6,37 +6,44 @@ import DataContext from '../../context/DataContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function SingleItem() {
-
-    let { itemID } = useParams();
-
+    
     const nav = useNavigate();
 
     const { cart, setCart } = useContext(DataContext);
     const [item, setItem] = useState({});
 
+    let { itemID } = useParams();
+
+    useEffect(() => {
+        axios.get('http://localhost:2500/item/singleItem/' + itemID)
+            .then(response => setItem(response.data))
+            .catch(() => nav("/404"));
+    }, []);
+
     const handlePlus = () => {
         let newCart = { ...cart }
-        if (newCart[item.id]) {
-            newCart[item.id].count += 1
+        if (newCart[item._id]) {
+            newCart[item._id].count += 1
         }
         else {
-            newCart[item.id] = { ...item, count: 1 }
+            newCart[item._id] = { ...item, count: 1 }
         }
         setCart(newCart);
     };
 
     const handleMinus = () => {
         // בדיקה אם קיים בעגלה
-        if (cart[item.id]) {
+        if (cart[item._id]) {
             let newCart = { ...cart }
-            if (newCart[item.id].count > 1) {
-                newCart[item.id].count -= 1
+            if (newCart[item._id].count > 1) {
+                newCart[item._id].count -= 1
             }
             else {
-                delete newCart[item.id];
+                delete newCart[item._id];
             }
             setCart(newCart);
         }
@@ -48,15 +55,15 @@ export default function SingleItem() {
         if (newValue.trim() !== '') {
             let newCart = { ...cart };
             if (newValue > 100) {
-                newCart[item.id].count = 100;
+                newCart[item._id].count = 100;
                 setCart(newCart);
             }
             else if (e.target.value < 0 || e.target.value === "") {
-                newCart[item.id].count = 0;
+                newCart[item._id].count = 0;
                 setCart(newCart);
             }
             else {
-                newCart[item.id].count = Number(newValue);
+                newCart[item._id].count = Number(newValue);
                 setCart(newCart);
             }
         }
@@ -66,16 +73,9 @@ export default function SingleItem() {
         e.preventDefault();
     };
 
-    useEffect(() => {
-        fetch(`https://jbh-mockserver.onrender.com/items/${itemID}`)
-            .then(j => j.json())
-            .then(response => setItem(response))
-            .catch(() => nav("/404"));
-    }, []);
-
     return (
         <div className='sItem'>
-            <Link id='styledLink' to={'/categories'}>
+            <Link id='styledLink' to={'/categories/' + item.category}>
                 <button className="back">
                     <FontAwesomeIcon className='CircleArrowLeft' icon={faCircleArrowLeft} />
                 </button>
@@ -83,9 +83,9 @@ export default function SingleItem() {
             <div className='sItemImg'><img src={item.image} alt={item.name} /></div>
             <div className='sItemDetails'>
                 <div className="sItemName">{item.name}</div>
-                <div className="sItemId"><span>Item ID</span>{item.id}</div>
-                <div className="sItemPrice"><span>Price</span>{item.price}$</div>
-                <div className="about"><span>About</span>
+                <div className="sItemId"><span>ברקוד</span>{item.barcode}</div>
+                <div className="sItemPrice"><span>מחיר</span>{item.price}₪</div>
+                <div className="about"><span>על המוצר</span>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Molestiae id repellendus quas optio, eligendi consequatur iste!
@@ -93,7 +93,7 @@ export default function SingleItem() {
                         Voluptatibus eos tempora excepturi.
                     </p>
                 </div>
-                {cart[item.id] ?
+                {cart[item._id] ?
                     <div className='sCountAndButtons' onClick={(e) => e.stopPropagation()}>
                         <button className='sAmountButton' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} /></button>
                         <form onSubmit={handleSubmit}>
@@ -103,24 +103,22 @@ export default function SingleItem() {
                                 max="100"
                                 className='sCount'
                                 name='itemCount'
-                                value={cart[item.id]?.count || 0}
+                                value={cart[item._id]?.count || 0}
                                 onChange={handleInput}
                             />
                             <input type="submit" value="Submit" />
                         </form>
-                        {/* <span className='count'>{cart[item.id]?.count || 0}</span> */}
+                        {/* <span className='count'>{cart[item._id]?.count || 0}</span> */}
                         <button
                             className='sAmountButton'
-                            onClick={cart[item.id].count < 100 ? handlePlus : () => { }}
+                            onClick={cart[item._id].count < 100 ? handlePlus : () => { }}
                         ><FontAwesomeIcon icon={faPlus} /></button>
                     </div>
                     :
                     // אם המוצר לא קיים בעגלה יוצג כפתור הוסף לעגלה
-                    <button className='sAddToCart' onClick={(e) => { e.stopPropagation(), handlePlus() }}>Add To Cart</button>
+                    <button className='sAddToCart' onClick={(e) => { e.stopPropagation(), handlePlus() }}><b>הוסף לעגלה</b></button>
                 }
             </div>
         </div>
     )
 }
-
-// {"id":"01","name":"Apple","color":"Red","emoji":"🍎","price":1.99,"image":"https://i.pinimg.com/originals/c4/d9/ee/c4d9eefa0d4136938ed03c7359286f7a.png"}
