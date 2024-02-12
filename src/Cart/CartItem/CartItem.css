@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-.fruitImgCart img {  
+.fruitImgCart img {
     max-width: 80px;
     max-height: 100%;
 }
@@ -38,6 +38,8 @@
     border: none;
     font-size: 14px;
     filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.554));
+    padding: 5px;
+    margin: 5px;
 }
 
 .amountButtonCart:hover {

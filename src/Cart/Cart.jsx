@@ -7,9 +7,14 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import DataContext from '../context/DataContext'
 import CartItem from './CartItem/CartItem'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Cart() {
+  
+  const nav = useNavigate();
+
+  const { user, setUser } = useContext(DataContext);
 
   const { cart, setCart } = useContext(DataContext);
   const [total, setTotal] = useState(0);
@@ -52,7 +57,7 @@ export default function Cart() {
         )}
       </div>
       <div className="payArea">
-        <button className="pay">
+        <button onClick={() => user ? nav('/checkout') : nav('/login')} className="pay">
           <FontAwesomeIcon icon={faCartShopping} /> לתשלום: {total}₪
         </button>
       </div>

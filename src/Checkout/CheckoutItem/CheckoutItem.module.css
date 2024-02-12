@@ -4,10 +4,9 @@
     flex-direction: row;
     align-items: center;
     gap: 1vw;
-    /* min-height: 45px; */
     height: 85px;
-    padding-bottom: 9px;
-    border-bottom: 1px solid rgb(246, 204, 204);
+    padding: 0 0 9px 0.5vw;
+    border-bottom: 1px solid var(--second-color);
 }
 
 .checkoutItems span {
@@ -36,7 +35,7 @@
 
 .price{
     position: absolute;
-    left: 0.3vw;
+    left: 0.5vw;
     bottom: 0.3vw;
     font-size: 0.5vw;
     color: gray;

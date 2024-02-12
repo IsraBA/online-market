@@ -3,6 +3,7 @@
 :root {
     --color: rgb(30, 30, 30);
     --primary-color: rgb(224, 0, 0);
+    --second-color: rgb(246, 204, 204);
     --primary-transparent-color: rgb(255, 243, 243);
 }
 
@@ -34,8 +35,3 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-
-/* button {
-    padding: 5px;
-    margin: 5px;
-} */
