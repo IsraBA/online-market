@@ -3,15 +3,13 @@ import './Search.css'
 import { useState } from 'react'
 
 
-export default function Search(props) {
-
-  const [textInput, setTextInput] = useState(localStorage.input ? localStorage.input : "");
+export default function Search({setSearch, textInput, setTextInput}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (textInput) {
-      props.setSearch(textInput);
-      localStorage.Search = textInput;
+      setSearch(textInput);
+      sessionStorage.Search = textInput;
     }
   };
 
@@ -21,7 +19,7 @@ export default function Search(props) {
         <input
           type="text"
           placeholder='חפש מוצר'
-          onChange={(e) => {setTextInput(e.target.value), localStorage.input = e.target.value}}
+          onChange={(e) => {setTextInput(e.target.value), sessionStorage.input = e.target.value}}
           value={textInput}
         />
         <button type="submit" className='searchIcon'>

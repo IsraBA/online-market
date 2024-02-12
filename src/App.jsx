@@ -17,7 +17,9 @@ export default function App() {
       axios.get('http://localhost:2500/user/user',
         { headers: { Authorization: `Bearer ${localStorage.token}` } }
       ).then((res) => setUser(res.data));
-      nav('/categories');
+      if(location.pathname == '/login'){
+        nav('/categories');
+      }
     }
   }, [localStorage.token])
 

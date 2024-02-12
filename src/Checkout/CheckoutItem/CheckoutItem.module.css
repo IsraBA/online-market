@@ -1,0 +1,49 @@
+.checkoutItems {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+    /* min-height: 45px; */
+    height: 85px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid rgb(246, 204, 204);
+}
+
+.checkoutItems span {
+    height: 100%;
+    width: 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-left: 1px solid var(--primary-color); */
+    /* padding: 5px; */
+}
+
+.checkoutItems img {
+    max-height: 100%;
+}
+
+.name {
+    font-size: 1.6vw;
+    font-weight: 600;
+}
+
+.count {
+    font-size: 1vw;
+    color: gray;
+}
+
+.price{
+    position: absolute;
+    left: 0.3vw;
+    bottom: 0.3vw;
+    font-size: 0.5vw;
+    color: gray;
+}
+
+.total{
+    margin-right: auto;
+    font-size: 1.5vw;
+    font-weight: 700;
+}

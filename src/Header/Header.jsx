@@ -16,7 +16,8 @@ export default function Header() {
     const nav = useNavigate();
 
     // חיפוש בכל המוצרים בעת הקלדה בשורת חיפוש
-    const [search, setSearch] = useState(localStorage.search ? localStorage.search : "");
+    const [search, setSearch] = useState(sessionStorage.search ? sessionStorage.search : "");
+    const [textInput, setTextInput] = useState(sessionStorage.input ? sessionStorage.input : "");
 
     useEffect(() => {
         if (search) {
@@ -28,14 +29,20 @@ export default function Header() {
         if (user) {
             setUser("");
             localStorage.user = "";
+            localStorage.token = "";
         } else { nav('/login') }
     };
 
 
     return (
         <>
-            <Link to={"/categories"} className="logo"><img src={logo} alt="logo" /></Link>
-            <Search setSearch={setSearch} />
+            <Link
+                onClick={() => {setSearch(""), setTextInput("")}}
+                to={"/categories"}
+                className="logo">
+                <img src={logo} alt="logo" />
+            </Link>
+            <Search setSearch={setSearch} textInput={textInput} setTextInput={setTextInput} />
             <button className="userPopUp"><User />
                 <div className="profileMenu" onClick={handleClick}>
                     <span>{user ? "התנתק" : "התחבר"}</span>&nbsp;&nbsp;

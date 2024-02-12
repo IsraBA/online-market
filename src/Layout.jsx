@@ -2,9 +2,10 @@ import Cart from './Cart/Cart'
 import Content from './Content/Content'
 import './Layout.css'
 import { useState, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Header from './Header/Header'
 import DataContext from './context/DataContext'
+import Checkout from './Checkout/Checkout'
 
 export default function Layout() {
 
@@ -26,12 +27,18 @@ export default function Layout() {
       <div className='layout'>
         <header><Header /></header>
         <main>
-          <div className='cartLayout'>
-            <Cart />
-          </div>
-          <div className='content'>
-            <Content />
-          </div>
+          <Routes>
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='*' element={<>
+              <div className='cartLayout'>
+                <Cart />
+              </div>
+              <div className='content'>
+                <Content />
+              </div>
+            </>}
+            />
+          </Routes>
         </main>
       </div>
     </DataContext.Provider>

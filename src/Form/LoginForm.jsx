@@ -29,15 +29,11 @@ export default function Form() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (Object.values(formError).every((value) => !value.trim())) {
-            try {
-                axios.post('http://localhost:2500/login', formState)
-                    .then((res) => goNext(res.data));
-            } catch (error) {
-                // setWrong(true);
-                console.log(error.status)
-            }
-        }
-    };
+            axios.post('http://localhost:2500/login', formState)
+                .then((res) => goNext(res.data))
+                .catch((error) => setWrong(true))
+        };
+    }
 
     const handleChange = (e) => {
         // console.log(e.target.email, e.target.value);
