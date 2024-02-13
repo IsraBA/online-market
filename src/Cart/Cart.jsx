@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Cart() {
-  
+
   const nav = useNavigate();
 
   const { user, setUser } = useContext(DataContext);
@@ -30,6 +30,16 @@ export default function Cart() {
     delete newCart[_id];
     setCart(newCart);
   }
+
+  const handlePayClick = () => {
+    let cartLength = Object.keys(cart).length;
+    if (user && cartLength > 0) {
+      sessionStorage.success = false;
+      nav('/checkout');
+    }
+    else if (user) { alert("יש למלא לפחות מוצר אחד בעגלה") }
+    else { nav('/login') }
+  };
 
   return (
     <div className='cart'>
@@ -57,7 +67,7 @@ export default function Cart() {
         )}
       </div>
       <div className="payArea">
-        <button onClick={() => user ? nav('/checkout') : nav('/login')} className="pay">
+        <button onClick={handlePayClick} className="pay">
           <FontAwesomeIcon icon={faCartShopping} /> לתשלום: {total}₪
         </button>
       </div>

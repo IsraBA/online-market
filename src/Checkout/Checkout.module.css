@@ -7,15 +7,37 @@
 }
 
 .checkout h1 {
+    animation: fadeInTitle 1s;
     font-size: 3.7vw;
     font-weight: 800;
     margin-bottom: 1vw;
 }
+@keyframes fadeInTitle {
+    0% {
+        transform: translateX(65px);
+        opacity: 0
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
 .details{
+    animation: fadeIn 1s;
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 3vw;
+}
+@keyframes fadeIn {
+    0% {
+        transform: translateY(65px);
+        opacity: 0
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .checkout h2 {

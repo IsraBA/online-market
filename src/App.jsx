@@ -15,9 +15,10 @@ export default function App() {
   useEffect(() => {
     if (localStorage.token) {
       axios.get('http://localhost:2500/user/user',
-        { headers: { Authorization: `Bearer ${localStorage.token}` } }
-      ).then((res) => setUser(res.data));
-      if(location.pathname == '/login'){
+        { headers: { Authorization: `Bearer ${localStorage.token}` } })
+        .then((res) => setUser(res.data))
+        .catch((err) =>setUser(""));
+      if (location.pathname == '/login') {
         nav('/categories');
       }
     }

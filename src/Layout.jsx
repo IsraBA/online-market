@@ -6,6 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Header from './Header/Header'
 import DataContext from './context/DataContext'
 import Checkout from './Checkout/Checkout'
+import UserPage from './UserPage/UserPage'
 
 export default function Layout() {
 
@@ -29,6 +30,7 @@ export default function Layout() {
         <main>
           <Routes>
             <Route path='/checkout' element={<Checkout />} />
+            <Route path='/userPage' element={<UserPage />} />
             <Route path='*' element={<>
               <div className='cartLayout'>
                 <Cart />
