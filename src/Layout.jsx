@@ -7,6 +7,9 @@ import Header from './Header/Header'
 import DataContext from './context/DataContext'
 import Checkout from './Checkout/Checkout'
 import UserPage from './UserPage/UserPage'
+import UserInfo from './UserPage/UserInfo/UserInfo'
+import UserOrders from './UserPage/UserOrders/UserOrders'
+import DeleteUser from './UserPage/deleteUser/deleteUser'
 
 export default function Layout() {
 
@@ -30,7 +33,11 @@ export default function Layout() {
         <main>
           <Routes>
             <Route path='/checkout' element={<Checkout />} />
-            <Route path='/userPage' element={<UserPage />} />
+            <Route path='/userPage' element={<UserPage />} >
+              <Route path='personalInformation' element={<UserInfo />} />
+              <Route path='orders' element={<UserOrders />} />
+              <Route path='deleteUser' element={<DeleteUser />} />
+            </Route>
             <Route path='*' element={<>
               <div className='cartLayout'>
                 <Cart />

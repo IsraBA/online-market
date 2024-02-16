@@ -1,0 +1,57 @@
+.userPage{
+    height: 100%;
+    width: 100%;
+    direction: rtl;
+    display: flex;
+}
+
+.userPage .list {
+    width: 15%;
+    min-width: 250px;
+    border-left: 2px solid var(--second-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 15px;
+}
+
+.userPage a {
+    width: 100%;
+    /* text-align: center; */
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon{
+    width: 2vw;
+}
+
+.userPage svg {
+    width: 100%;
+}
+
+.user{
+    min-width: 15px;
+    width: 1.2vw;
+    margin-top: 0.1vw;
+}
+.orders{
+    min-width: 17px;
+    margin-top: 0.3vw;
+    width: 1.4vw;
+}
+.deleteUser{
+    min-width: 22px;
+    margin-top: 0.1vw;
+    width: 1.8vw;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px;
+}
