@@ -49,6 +49,7 @@ main {
 }
 
 .categories {
+    animation: fadeIn 0.8s;
     width: 100%;
     height: 100vh;
     display: flex;

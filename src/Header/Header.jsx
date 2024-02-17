@@ -37,7 +37,12 @@ export default function Header() {
     return (
         <>
             <Link
-                onClick={() => { setSearch(""), setTextInput("") }}
+                onClick={() => {
+                    setSearch(""),
+                        setTextInput(""),
+                        sessionStorage.search = '',
+                        sessionStorage.input = ''
+                }}
                 to={"/categories"}
                 className="logo">
                 <img src={logo} alt="logo" />

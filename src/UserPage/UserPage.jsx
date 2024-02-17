@@ -10,7 +10,9 @@ export default function UserPage() {
   const nav = useNavigate();
 
   useEffect(() => {
-    nav('/userPage/personalInformation')
+    if (location.pathname === '/userPage') {
+      nav('/userPage/personalInformation')
+    }
   }, [])
 
   return (

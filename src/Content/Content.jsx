@@ -5,7 +5,6 @@ import Categories from '../Categories/Categories';
 import SingleItem from '../ItemList/Item/SingleItem';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
-import Checkout from '../Checkout/Checkout';
 
 export default function Content() {
 

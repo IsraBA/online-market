@@ -10,6 +10,7 @@ import UserPage from './UserPage/UserPage'
 import UserInfo from './UserPage/UserInfo/UserInfo'
 import UserOrders from './UserPage/UserOrders/UserOrders'
 import DeleteUser from './UserPage/deleteUser/deleteUser'
+import SingleOrder from './UserPage/UserOrders/SingleOrder/SingleOrder'
 
 export default function Layout() {
 
@@ -37,6 +38,7 @@ export default function Layout() {
               <Route path='personalInformation' element={<UserInfo />} />
               <Route path='orders' element={<UserOrders />} />
               <Route path='deleteUser' element={<DeleteUser />} />
+              <Route path='orders/singleOrder/:orderId' element={<SingleOrder />} />
             </Route>
             <Route path='*' element={<>
               <div className='cartLayout'>

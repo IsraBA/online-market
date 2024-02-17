@@ -110,6 +110,7 @@
 }
 
 .pay {
+    animation: popUp 0.3s ease-in-out;
     width: 85%;
     height: 35px;
     background-color: rgb(212, 0, 0);
@@ -118,6 +119,19 @@
     border: 0;
     padding: 5px;
     margin: 10px;
+}
+@keyframes popUp {
+    0% {
+        transform: scale(0);
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .pay:hover {

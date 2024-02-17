@@ -19,16 +19,14 @@ export default function ItemList() {
     }, []);
 
     return (
-        <div className="items">
-            <div className="fruits">
-                {items.map(item => {
-                    return (
-                        <div className="product" onClick={() => nav("/items/" + item._id)}>
-                            <Item key={item._id} item={item} />
-                        </div>
-                    )
-                })}
-            </div>
+        <div className="fruits">
+            {items.map(item => {
+                return (
+                    <div className="product" onClick={() => nav("/items/" + item._id)}>
+                        <Item key={item._id} item={item} />
+                    </div>
+                )
+            })}
         </div>
     )
 }

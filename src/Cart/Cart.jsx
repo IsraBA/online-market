@@ -17,7 +17,15 @@ export default function Cart() {
   const { user, setUser } = useContext(DataContext);
 
   const { cart, setCart } = useContext(DataContext);
+  const [cartLength, setCartLength] = useState(false);
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (Object.keys(cart).length) {
+      setCartLength(true);
+    } else { setCartLength(false) }
+  }, [cart])
+
 
   let newTotal = 0;
   Object.values(cart).forEach(cartItem => {
@@ -32,8 +40,7 @@ export default function Cart() {
   }
 
   const handlePayClick = () => {
-    let cartLength = Object.keys(cart).length;
-    if (user && cartLength > 0) {
+    if (user && cartLength) {
       sessionStorage.success = false;
       nav('/checkout');
     }
@@ -48,9 +55,10 @@ export default function Cart() {
           <span className='cartIcon'><FontAwesomeIcon icon={faCartShopping} /></span>
           <span>עגלה</span>
         </span>
-        <button className='removeAll' title="Remove all" onClick={() => setCart({})}>
-          <img className='removeAllImg' src="https://static.thenounproject.com/png/249220-200.png" alt="remove all" />
-        </button>
+        {cartLength &&
+          <button className='removeAll' title="Remove all" onClick={() => setCart({})}>
+            <img className='removeAllImg' src="https://static.thenounproject.com/png/249220-200.png" alt="remove all" />
+          </button>}
       </div>
       <div className="cartItems">
         {Object.values(cart).map(cartItem =>
@@ -66,11 +74,12 @@ export default function Cart() {
           </div>
         )}
       </div>
-      <div className="payArea">
-        <button onClick={handlePayClick} className="pay">
-          <FontAwesomeIcon icon={faCartShopping} /> לתשלום: {total}₪
-        </button>
-      </div>
+      {cartLength &&
+        <div className="payArea">
+          <button onClick={handlePayClick} className="pay">
+            <FontAwesomeIcon icon={faCartShopping} /> לתשלום: {total}₪
+          </button>
+        </div>}
     </div>
   )
 }
