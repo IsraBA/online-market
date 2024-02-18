@@ -20,7 +20,7 @@ export default function UserOrders() {
         { headers: { Authorization: `Bearer ${localStorage.token}` } }
       ).then(res => setOrders(res.data.reverse()))
         .catch(err => { console.error(err), nav('/categories') })
-    }
+    } else { nav('/categories') }
   }, [user]);
 
   // הפיכת התאריך להיות בפורמט תאריך בלבד

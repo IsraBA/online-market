@@ -23,7 +23,7 @@ export default function SingleOrder() {
                 { headers: { Authorization: `Bearer ${localStorage.token}` } }
             ).then(res => setOrder(res.data))
                 .catch(err => { console.error(err), nav('/categories') })
-        }
+        } else { nav('/categories') }
     }, [user]);
 
     return (

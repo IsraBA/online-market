@@ -25,7 +25,7 @@ export default function UserInfo() {
 
 
   useEffect(() => {
-    if (!localStorage.token) {
+    if (!localStorage.token || !user) {
       nav('/categories');
       return;
     }
