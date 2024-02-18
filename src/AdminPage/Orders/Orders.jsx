@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './UserOrders.module.css'
+import styles from './Orders.module.css'
 import DataContext from '../../context/DataContext';
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import cartImg from '../../../public/checkout.png'
 
 
-export default function UserOrders() {
+export default function Orders() {
 
   const nav = useNavigate();
 
@@ -16,7 +16,7 @@ export default function UserOrders() {
 
   useEffect(() => {
     if (user) {
-      axios.get('http://localhost:2500/order/user/' + user._id,
+      axios.get('http://localhost:2500/order',
         { headers: { Authorization: `Bearer ${localStorage.token}` } }
       ).then(res => setOrders(res.data.reverse()))
         .catch(err => { console.error(err), nav('/categories') })
@@ -46,6 +46,8 @@ export default function UserOrders() {
             <table className={styles.orders}>
               <thead>
                 <tr className={styles.titles}>
+                  <th>שם המזמין/ה</th>
+                  <th>אימייל</th>
                   <th>מספר הזמנה</th>
                   <th>תאריך הזמנה</th>
                   <th>כמות פריטים</th>
@@ -54,6 +56,8 @@ export default function UserOrders() {
               </thead>
               <tbody>
                 {orders.map(o => <tr onClick={() => nav('/userPage/orders/singleOrder/' + o._id)}>
+                  <td>{o.userId.fName} {o.userId.lName}</td>
+                  <td>{o.userId.email}</td>
                   <td>{o._id}</td>
                   <td>{formatDate(o.orderDate).date}</td>
                   <td>{o?.items.length}</td>

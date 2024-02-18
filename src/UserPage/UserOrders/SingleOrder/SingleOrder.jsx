@@ -26,14 +26,16 @@ export default function SingleOrder() {
         } else { nav('/categories') }
     }, [user]);
 
+    console.log({order})
+
     return (
         <div className={styles.details}>
             <div className={styles.user}>
                 <div>
                     <h2>פרטי משלוח</h2>
                     <ul>
-                        <li>{user.fName} {user.lName}</li>
-                        <li> {user.email}</li>
+                        <li>{order.userId?.fName} {order.userId?.lName}</li>
+                        <li> {order.userId?.email}</li>
                         <li>הנגב 48, אריאל</li>
                         <li>4076730</li>
                         <li>ישראל</li>

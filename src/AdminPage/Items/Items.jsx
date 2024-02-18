@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from './DeleteUser.module.css'
+import styles from './Items.module.css'
 import axios from 'axios';
 import DataContext from '../../context/DataContext';
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-export default function DeleteUser() {
+export default function Items() {
 
   const nav = useNavigate();
 

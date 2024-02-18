@@ -6,12 +6,18 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Header from './Header/Header'
 import DataContext from './context/DataContext'
 import Checkout from './Checkout/Checkout'
+
 import UserPage from './UserPage/UserPage'
 import UserInfo from './UserPage/UserInfo/UserInfo'
 import UserOrders from './UserPage/UserOrders/UserOrders'
 import DeleteUser from './UserPage/deleteUser/deleteUser'
 import SingleOrder from './UserPage/UserOrders/SingleOrder/SingleOrder'
+
 import AdminPage from './AdminPage/AdminPage'
+import Users from './AdminPage/Users/Users'
+import Orders from './AdminPage/Orders/Orders'
+import Items from './AdminPage/Items/Items'
+
 
 export default function Layout() {
 
@@ -42,9 +48,9 @@ export default function Layout() {
               <Route path='orders/singleOrder/:orderId' element={<SingleOrder />} />
             </Route>
             <Route path='/adminPage' element={<AdminPage />} >
-              <Route path='users' element={<UserInfo />} />
-              <Route path='orders' element={<UserOrders />} />
-              <Route path='items' element={<DeleteUser />} />
+              <Route path='users' element={<Users />} />
+              <Route path='orders' element={<Orders />} />
+              <Route path='items' element={<Items />} />
             </Route>
             <Route path='*' element={<>
               <div className='cartLayout'>
