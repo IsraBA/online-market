@@ -5,7 +5,7 @@ import User from './User'
 import './Header.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faScrewdriverWrench, faUser } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../public/cart logo.png'
 import Search from '../Menu/Search';
 
@@ -58,6 +58,12 @@ export default function Header() {
                         <div onClick={() => nav('/userPage/personalInformation')}>
                             <span>פרופיל</span>&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faUser} style={{ fontSize: 17 }} />
+                        </div>
+                    }
+                    {user.premission === 'admin' &&
+                        <div onClick={() => nav('/adminPage')}>
+                            <span>ניהול</span>&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faScrewdriverWrench} style={{ fontSize: 17 }} />
                         </div>
                     }
                 </div>

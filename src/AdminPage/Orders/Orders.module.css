@@ -1,0 +1,105 @@
+.ordersPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 97%;
+    height: 100%;
+}
+
+.ordersPage h1 {
+    font-size: 3.3vw;
+    font-weight: 800;
+    margin-bottom: -10px;
+    margin-left: auto;
+}
+.ordersPage p {
+    margin-left: auto;
+    font-size: 14px;
+    color: rgb(158, 158, 158);
+}
+
+.list {
+    animation: openTabel 0.7s ease;
+    width: 90%;
+    height: 65vh;
+    overflow-y: auto;
+    margin: auto;
+    position: relative;
+}
+@keyframes openTabel {
+    0% {
+        height: 0vh;
+        opacity: 0
+    }
+    100% {
+        height: 65vh;
+        opacity: 1;
+    }
+}
+
+.orders {
+    width: 100%;
+}
+
+.titles{
+    background-color: white;
+    position: sticky;
+    top: 0;
+} 
+
+.orders tr {
+    height: 42px;
+}
+
+.orders tr:nth-child(even) {
+    background-color: var(--primary-transparent-color);
+}
+
+.orders tbody tr:hover {
+    background-color: var(--second-color);
+    cursor: pointer;
+}
+
+.orders td {
+    direction: ltr;
+    font-size: 1vw;
+    padding: 7px 27px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /* max-width: 200px; */
+}
+
+.orders th {
+    font-size: 1.3vw;
+    padding: 7px 27px;
+    border-bottom: 3px solid var(--primary-color);
+    /* border-top: 3px solid var(--primary-color); */
+    /* min-width: 115px; */
+    /* background-color: var(--second-color); */
+}
+
+.orders th:first-child {
+    border-radius: 0 0 10px 0;
+}
+
+.orders th:last-child {
+    border-radius: 0 0 0 10px;
+}
+
+.noOrders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.noOrders h2 {
+    font-size: 3vw;
+}
+
+.noOrders img {
+    width: 67%;
+}
