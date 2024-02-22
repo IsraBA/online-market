@@ -42,7 +42,7 @@ export default function Layout() {
           <Routes>
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/userPage' element={<UserPage />} >
-              <Route path='personalInformation' element={<UserInfo />} />
+              <Route path='personalInformation/:userId' element={<UserInfo />} />
               <Route path='orders' element={<UserOrders />} />
               <Route path='deleteUser' element={<DeleteUser />} />
               <Route path='orders/singleOrder/:orderId' element={<SingleOrder />} />

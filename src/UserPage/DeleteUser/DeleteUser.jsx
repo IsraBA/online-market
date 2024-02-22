@@ -13,7 +13,7 @@ export default function DeleteUser() {
   const { user, setUser } = useContext(DataContext);
   const [afterDelet, setAfterDelet] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  console.log(user)
+  // console.log(user)
 
   useEffect(() => {
     if (!user) {

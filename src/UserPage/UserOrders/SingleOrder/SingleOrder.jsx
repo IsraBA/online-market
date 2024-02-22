@@ -3,12 +3,8 @@ import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SingleOrder.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import DataContext from '../../../context/DataContext';
 import CheckoutItem from '../../../Checkout/CheckoutItem/CheckoutItem';
-import Success from '../../../Checkout/Success/Success';
-import Fail from '../../../Checkout/Fail/Fail';
 
 export default function SingleOrder() {
     const nav = useNavigate();

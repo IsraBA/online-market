@@ -38,40 +38,32 @@ export default function Orders() {
 
   return (
     <div className={styles.ordersPage}>
-      {orders.length > 0 ?
-        <>
-          <h1>הזמנות</h1>
-          <p>יש ללחוץ על הזמנה כדי להציג את הפרטים</p>
-          <div className={styles.list}>
-            <table className={styles.orders}>
-              <thead>
-                <tr className={styles.titles}>
-                  <th>שם המזמין/ה</th>
-                  <th>אימייל</th>
-                  <th>מספר הזמנה</th>
-                  <th>תאריך הזמנה</th>
-                  <th>כמות פריטים</th>
-                  <th>סך הכל</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map(o => <tr onClick={() => nav('/userPage/orders/singleOrder/' + o._id)}>
-                  <td>{o.userId.fName} {o.userId.lName}</td>
-                  <td>{o.userId.email}</td>
-                  <td>{o._id}</td>
-                  <td>{formatDate(o.orderDate).date}</td>
-                  <td>{o?.items.length}</td>
-                  <td>₪{o.total}</td>
-                </tr>)}
-              </tbody>
-            </table>
-          </div>
-        </> :
-        <div className={styles.noOrders}>
-          <h2>נראה שעדיין לא הזמנת כלום...</h2>
-          <img src={cartImg} alt="עגלה ריקה" />
-        </div>
-      }
+      <h1>הזמנות</h1>
+      <p>יש ללחוץ על הזמנה כדי להציג את הפרטים</p>
+      <div className={styles.list}>
+        <table className={styles.orders}>
+          <thead>
+            <tr className={styles.titles}>
+              <th>שם המזמין/ה</th>
+              <th>אימייל</th>
+              <th>מספר הזמנה</th>
+              <th>תאריך הזמנה</th>
+              <th>כמות פריטים</th>
+              <th>סך הכל</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(o => <tr onClick={() => nav('/userPage/orders/singleOrder/' + o._id)}>
+              <td>{o.userId.fName} {o.userId.lName}</td>
+              <td>{o.userId.email}</td>
+              <td>{o._id}</td>
+              <td>{formatDate(o.orderDate).date}</td>
+              <td>{o?.items.length}</td>
+              <td>₪{o.total}</td>
+            </tr>)}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

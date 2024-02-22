@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket, faScrewdriverWrench, faUser } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../public/cart logo.png'
-import Search from '../Menu/Search';
+import Search from './Search/Search';
 
 
 export default function Header() {
@@ -55,7 +55,7 @@ export default function Header() {
                         <FontAwesomeIcon icon={faRightFromBracket} style={{ fontSize: 17 }} />
                     </div>
                     {user &&
-                        <div onClick={() => nav('/userPage/personalInformation')}>
+                        <div onClick={() => nav('/userPage/personalInformation/' + user._id)}>
                             <span>פרופיל</span>&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faUser} style={{ fontSize: 17 }} />
                         </div>
