@@ -21,12 +21,12 @@ export default function Items() {
   useEffect(() => {
     const fetchItems = async () => {
       let allItems = { ...items };
-  
+
       for (const cat of categories) {
         const res = await axios.get('http://localhost:2500/item/' + cat);
         allItems[cat] = res.data;
       }
-  
+
       setItems((prevItems) => ({ ...prevItems, ...allItems }));
     };
 
@@ -48,9 +48,8 @@ export default function Items() {
   return (
     <div className={styles.ordersPage}>
       <h1>מוצרים</h1>
-      <p>יש ללחוץ על מוצר כדי להציג את הפרטים ולערוך</p>
       <div className={styles.list}>
-        <table className={styles.orders}>
+        <table className={styles.items}>
           <thead>
             <tr className={styles.titles}>
               <th>תמונה</th>
@@ -66,7 +65,7 @@ export default function Items() {
                 <tr key={cat}>
                   <td colSpan='5' id={styles.categoty}>{cat}</td>
                 </tr>
-                {items[cat].map(item => <SingleItem item={item}/> )}
+                {items[cat].map(item => <SingleItem currentItem={item} />)}
               </>
             )}
           </tbody>

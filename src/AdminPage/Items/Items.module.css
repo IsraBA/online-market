@@ -38,7 +38,7 @@
     }
 }
 
-.orders {
+.items {
     width: 100%;
 }
 
@@ -46,6 +46,7 @@
     background-color: white;
     position: sticky;
     top: 0;
+    z-index: 10;
 } 
 
 #categoty{
@@ -59,20 +60,15 @@
     border-bottom: 2px solid var(--primary-color);
 }
 
-.orders tr {
-    height: 42px;
-}
-
-.orders tr:nth-child(even) {
+.items tr:nth-child(even) {
     background-color: var(--primary-transparent-color);
 }
 
-.orders tbody tr:hover {
+.items tbody tr:hover {
     background-color: var(--second-color);
-    cursor: pointer;
 }
 
-.orders td {
+.items td {
     direction: ltr;
     font-size: 1vw;
     padding: 7px 27px;
@@ -83,7 +79,7 @@
     /* max-width: 200px; */
 }
 
-.orders th {
+.items th {
     font-size: 1.3vw;
     padding: 7px 27px;
     border-bottom: 3px solid var(--primary-color);
@@ -92,11 +88,11 @@
     /* background-color: var(--second-color); */
 }
 
-.orders th:first-child {
+.items th:first-child {
     border-radius: 0 0 10px 0;
 }
 
-.orders th:last-child {
+.items th:last-child {
     border-radius: 0 0 0 10px;
 }
 
