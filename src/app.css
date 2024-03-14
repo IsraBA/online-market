@@ -3,11 +3,17 @@
 :root {
     --color: rgb(30, 30, 30);
     --primary-color: rgb(224, 0, 0);
+    --second-color: rgb(246, 204, 204);
     --primary-transparent-color: rgb(255, 243, 243);
 }
 
 .app {
-    font-family: Nunito;
+    font-family: 'Nunito', sans-serif;
+}
+
+#styledLink {
+    text-decoration: none;
+    color: black;
 }
 
 .items {
@@ -30,7 +36,7 @@
     justify-content: center;
 }
 
-button {
-    padding: 5px;
-    margin: 5px;
+a, .active {
+    text-decoration: none;
+    color: inherit;
 }

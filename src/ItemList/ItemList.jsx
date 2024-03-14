@@ -1,27 +1,32 @@
 import Item from './Item/Item'
 import './ItemList.css'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
+export default function ItemList() {
 
-export default function ItemList(props) {
+    let { categoryName } = useParams();
+
+    const nav = useNavigate();
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:2500/item/' + categoryName)
+            .then(response => setItems(response.data))
+            .catch(() => nav("/404"));
+    }, []);
 
     return (
-        <div className="items">
-            <div className="fruits">
-                {props.filtered.map(fruit => {
-                    return <div className="product"> <Item
-                        key={fruit.id}
-                        id={fruit.id}
-                        fruitName={fruit.name}
-                        image={fruit.image}
-                        price={fruit.price}
-                        setCart={props.setCart}
-                        count={props.cart.find(cartItem => cartItem.id === fruit.id) ?
-                            props.cart.find(cartItem => cartItem.id === fruit.id).count :
-                            undefined}
-                    />
+        <div className="fruits">
+            {items.map(item => {
+                return (
+                    <div className="product" onClick={() => nav("/items/" + item._id)}>
+                        <Item key={item._id} item={item} />
                     </div>
-                })}
-            </div>
+                )
+            })}
         </div>
     )
 }

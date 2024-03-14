@@ -1,0 +1,5 @@
+.active {
+    background-color: var(--second-color);
+    font-weight: 800;
+    transition: 0.2s;
+}
