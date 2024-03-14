@@ -17,6 +17,7 @@ import AdminPage from './AdminPage/AdminPage'
 import Users from './AdminPage/Users/Users'
 import Orders from './AdminPage/Orders/Orders'
 import Items from './AdminPage/Items/Items'
+import AddItem from './AdminPage/Items/AddItem/AddItem'
 
 
 export default function Layout() {
@@ -51,6 +52,7 @@ export default function Layout() {
               <Route path='users' element={<Users />} />
               <Route path='orders' element={<Orders />} />
               <Route path='items' element={<Items />} />
+              <Route path='items/addItem' element={<AddItem />} />
             </Route>
             <Route path='*' element={<>
               <div className='cartLayout'>

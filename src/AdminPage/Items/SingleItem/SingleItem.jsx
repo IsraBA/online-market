@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import { useState } from 'react'
 import axios from 'axios'
-import { faCheck, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faEllipsisVertical, faFloppyDisk, faTrash } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
 
 
-export default function SingleItem({ currentItem }) {
+export default function SingleItem({ currentItem, setItems }) {
 
   const [item, setItem] = useState(currentItem);
   const [editMode, setEditMode] = useState(false);
@@ -21,6 +21,10 @@ export default function SingleItem({ currentItem }) {
   }
   const [formState, setFormState] = useState(initialForm);
   const [formError, setformError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [confirmDel, setConfirmDel] = useState(false);
+  const [successDeleted, setSuccessDeleted] = useState(false);
+
 
   const alertFormError = (err) => {
     setformError(err);
@@ -34,8 +38,8 @@ export default function SingleItem({ currentItem }) {
     const { name, value, files } = e.target;
     if (files && files.length > 0) {
       const file = files[0];
-      if (file.size > 0.5 * 1024 * 1024) {
-        alert('יש לבחור קובץ עד 0.5MB');
+      if (file.size > 5 * 1024 * 1024) {
+        alert('יש לבחור קובץ עד 5MB');
         return;
       }
       const reader = new FileReader();
@@ -57,32 +61,70 @@ export default function SingleItem({ currentItem }) {
     setEditMode(false);
     if (_.isEqual(formState, initialForm)) return setformError('');
 
+    setLoading(true);
+
     const formData = new FormData();
     formData.append('image', formState.image);
     formData.append('name', formState.name);
     formData.append('category', formState.category);
     formData.append('price', formState.price);
     formData.append('barcode', formState.barcode);
+    // console.log(Object.fromEntries(formData.entries()))
 
-    await axios.put('http://localhost:2500/item/' + item._id, formState,
+    await axios.put('http://localhost:2500/item/' + item._id, formData,
       { headers: { Authorization: `Bearer ${localStorage.token}` } })
-      .then((res) => { setItem(res.data), setEditMode(false), setformError('') })
+      .then((res) => { setItem(res.data), setEditMode(false), setformError(''), setLoading(false) })
       .catch((err) => alertFormError(err.response.data));
   }
 
+  const deleteItem = () => {
+
+    axios.delete('http://localhost:2500/item/' + item._id,
+      { headers: { Authorization: `Bearer ${localStorage.token}` } })
+      .then((res) => {
+        console.log(res),
+          setSuccessDeleted(true),
+          setItems((prevItems) => {
+            let newItems = { ...prevItems };
+            newItems[item.category] = newItems[item.category].filter((remainingItem) => remainingItem._id !== item._id);
+            console.log('newItems: ', newItems)
+            return newItems;
+          })
+      })
+      .catch((err) => { alertFormError("אירעה שגיאה בעת המחיקה"), console.error(err) });
+  };
 
   return (
-    <tr className={styles.item}>
+    <>
+      {confirmDel && <div className={styles.confirmDel}>
+        {successDeleted ?
+          <div>
+            <h1>המוצר נמחק בהצלחה</h1>
+            <ul>
+              <li onClick={() => { setSuccessDeleted(false), setConfirmDel(false) }}>אוקי</li>
+            </ul>
+          </div>
+          :
+          <div>
+            <h1>האם למחוק מוצר זה?</h1>
+            <p>שם: {item.name}, ברקוד: {item.barcode}</p>
+            <ul>
+              <li onClick={deleteItem}>כן</li>
+              <li onClick={() => setConfirmDel(false)}>לאאא</li>
+            </ul>
+          </div>
+        }
+      </div>}
       {editMode ?
-        <>
-          {/* <td className={styles.imgTd}>
+        <tr className={styles.item}>
+          <td className={styles.imgTd}>
             <label className={styles.itemImage}>
               <span> <FontAwesomeIcon icon={faSquarePlus} /></span>
               <img src={formState.image} alt={formState.name} />
               <input onChange={handleChange} type="file" name='image' accept="image/*" />
             </label>
-          </td> */}
-          <td><input onChange={handleChange} type="text" name='image' value={formState.image} required /></td>
+          </td>
+          {/* <td><input onChange={handleChange} type="text" name='image' value={formState.image} required /></td> */}
           <td><input onChange={handleChange} type="text" name='name' value={formState.name} required /></td>
           <td><input onChange={handleChange} type="text" name='category' value={formState.category} required /></td>
           <td><input onChange={handleChange} type="number" name='price' value={formState.price} required /></td>
@@ -90,17 +132,25 @@ export default function SingleItem({ currentItem }) {
           <td id={styles.submit} onClick={handleSubmit}>
             <FontAwesomeIcon icon={faFloppyDisk} />
           </td>
-        </>
+        </tr>
         :
-        <>
+        <tr className={styles.item}>
+
           <td className={styles.imgTd}><img src={item.image} alt={item.name} /></td>
-          <td>{formError && <span id={styles.error}><span>{formError}</span></span>}{item.name}</td>
+          <td>
+            {formError && <span id={styles.error}><span>{formError}</span></span>}
+            {loading && <span id={styles.error}><img src="https://media1.giphy.com/media/7FfMfPHQr9romeeKtk/giphy-preview.gif" alt="loading" /></span>}
+            {item.name}
+          </td>
           <td>{item.category}</td>
-          <td>{item.price}₪</td>
+          <td>₪{item.price}</td>
           <td>{item.barcode}</td>
-          <td id={styles.edit} onClick={() => setEditMode(true)}><FontAwesomeIcon icon={faPenToSquare} /></td>
-        </>
+          <td id={styles.menu}>
+            <span onClick={() => setEditMode(true)}><FontAwesomeIcon icon={faPenToSquare} /></span>
+            <span onClick={() => setConfirmDel(true)}><FontAwesomeIcon icon={faTrash} /></span>
+          </td>
+        </tr>
       }
-    </tr>
+    </>
   )
 }

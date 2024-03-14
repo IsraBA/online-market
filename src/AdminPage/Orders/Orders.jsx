@@ -15,12 +15,10 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (user) {
-      axios.get('http://localhost:2500/order',
-        { headers: { Authorization: `Bearer ${localStorage.token}` } }
-      ).then(res => setOrders(res.data.reverse()))
-        .catch(err => { console.error(err), nav('/categories') })
-    } else { nav('/categories') }
+    axios.get('http://localhost:2500/order',
+      { headers: { Authorization: `Bearer ${localStorage.token}` } }
+    ).then(res => setOrders(res.data.reverse()))
+      .catch(err => { console.error(err), nav('/categories') })
   }, [user]);
 
   // הפיכת התאריך להיות בפורמט תאריך בלבד

@@ -15,12 +15,10 @@ export default function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    if (user) {
-      axios.get('http://localhost:2500/user',
-        { headers: { Authorization: `Bearer ${localStorage.token}` } }
-      ).then(res => setUsers(res.data.reverse()))
-        .catch(err => { console.error(err), nav('/categories') })
-    } else { nav('/categories') }
+    axios.get('http://localhost:2500/user',
+      { headers: { Authorization: `Bearer ${localStorage.token}` } }
+    ).then(res => setUsers(res.data.reverse()))
+      .catch(err => { console.error(err), nav('/categories') })
   }, [user]);
 
   // הפיכת התאריך להיות בפורמט תאריך בלבד

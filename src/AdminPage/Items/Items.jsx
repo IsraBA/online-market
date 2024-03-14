@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import cartImg from '../../../public/checkout.png'
 import SingleItem from './SingleItem/SingleItem';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function Items() {
@@ -37,17 +39,21 @@ export default function Items() {
   }, [categories]);
 
   useEffect(() => {
-    if (user) {
-      axios.get('http://localhost:2500/item/categories',
-        { headers: { Authorization: `Bearer ${localStorage.token}` } }
-      ).then(res => setCategories(res.data))
-        .catch(err => { console.error(err), nav('/categories') })
-    } else { nav('/categories') }
+    axios.get('http://localhost:2500/item/categories',
+      { headers: { Authorization: `Bearer ${localStorage.token}` } }
+    ).then(res => setCategories(res.data))
+      .catch(err => { console.error(err), nav('/categories') })
   }, [user]);
 
   return (
     <div className={styles.ordersPage}>
-      <h1>מוצרים</h1>
+      <span className={styles.header}>
+        <h1>מוצרים</h1>
+        <button className={styles.addItem} onClick={() => nav('/adminPage/items/addItem')}>
+          הוספת מוצר
+          {/* <FontAwesomeIcon icon={faPlus} /> */}
+        </button>
+      </span>
       <div className={styles.list}>
         <table className={styles.items}>
           <thead>
@@ -60,12 +66,14 @@ export default function Items() {
             </tr>
           </thead>
           <tbody>
+            {/* כדי שמוצר יעלם כשהוא נמחק אפשר לעשות את האייטמים מערך של אובייקטים שמכילים קיי אחד
+            שהוא השם של הקטגוריה ו-ווליו שהוא המערך של המוצרים */}
             {Object.keys(items).map(cat =>
               <>
                 <tr key={cat}>
                   <td colSpan='5' id={styles.categoty}>{cat}</td>
                 </tr>
-                {items[cat].map(item => <SingleItem currentItem={item} />)}
+                {items[cat].map(item => <SingleItem key={item._id} currentItem={item} setItems={setItems} />)}
               </>
             )}
           </tbody>
